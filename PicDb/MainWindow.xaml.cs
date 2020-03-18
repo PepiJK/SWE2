@@ -1,4 +1,5 @@
-﻿using System;
+﻿using PicDb.ViewModels;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -23,6 +24,26 @@ namespace PicDb
         public MainWindow()
         {
             InitializeComponent();
+            DataContext = new MainWindowViewModel();
+            ImagesViewControl.DataContext = new ImagesViewModel();
+            UsersViewControl.DataContext = new UsersViewModel();
         }
+
+        private void ImagesButton_Click(object sender, RoutedEventArgs e)
+        {
+            ImagesButton.IsChecked = true;
+            UsersButton.IsChecked = false;
+            ImagesViewControl.Visibility = Visibility.Visible;
+            UsersViewControl.Visibility = Visibility.Collapsed;
+        }
+
+        private void UsersButton_Click(object sender, RoutedEventArgs e)
+        {
+            UsersButton.IsChecked = true;
+            ImagesButton.IsChecked = false;
+            ImagesViewControl.Visibility = Visibility.Collapsed;
+            UsersViewControl.Visibility = Visibility.Visible;
+        }
+
     }
 }

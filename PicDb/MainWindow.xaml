@@ -4,9 +4,37 @@
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:PicDb"
+        xmlns:views="clr-namespace:PicDb.Views"
         mc:Ignorable="d"
-        Title="PicDb" Height="450" Width="800">
-    <Grid>
+        Icon="Assets/camera.png"
+        Title="PicDb" Height="720" Width="1280">
 
-    </Grid>
+
+    <DockPanel>
+
+        <Menu DockPanel.Dock="Top">
+            <MenuItem Header="_File"></MenuItem>
+            <MenuItem Header="_Edit">
+                <MenuItem Command="ApplicationCommands.Copy"/>
+                <MenuItem Command="ApplicationCommands.Cut"/>
+                <MenuItem Command="ApplicationCommands.Paste"/>
+            </MenuItem>
+            <MenuItem Header="_Options"></MenuItem>
+        </Menu>
+
+        <StackPanel DockPanel.Dock="Left" Background="#f0f0f0">
+            <ToggleButton Margin="15,10,15,5" Name="ImagesButton" IsChecked="True" Click="ImagesButton_Click">
+                <Image Source="Assets/camera_alt.png" Width="25" Margin="5"></Image>
+            </ToggleButton>
+            <ToggleButton Name="UsersButton" Click="UsersButton_Click" Margin="15,5,15,10">
+                <Image Source="Assets/account_box.png" Width="25" Margin="5"></Image>
+            </ToggleButton>
+        </StackPanel>
+
+        <Grid>
+            <views:ImagesView x:Name="ImagesViewControl"/>
+            <views:UsersView x:Name="UsersViewControl" Visibility="Collapsed"/>
+        </Grid>
+
+    </DockPanel>
 </Window>
