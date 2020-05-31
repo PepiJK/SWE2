@@ -4,7 +4,7 @@ using System.Text;
 
 namespace PicDb.ViewModels
 {
-    class ImagesViewModel
+    class PicturesListViewModel
     {
     }
 }

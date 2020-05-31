@@ -32,8 +32,8 @@
         </StackPanel>
 
         <Grid>
-            <views:ImagesView x:Name="ImagesViewControl"/>
-            <views:UsersView x:Name="UsersViewControl" Visibility="Collapsed"/>
+            <views:PicturesView x:Name="ImagesViewControl"/>
+            <views:PhotographersView x:Name="UsersViewControl" Visibility="Collapsed"/>
         </Grid>
 
     </DockPanel>

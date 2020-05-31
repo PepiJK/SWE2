@@ -16,9 +16,9 @@ namespace PicDb.Views
     /// <summary>
     /// Interaction logic for ImagesLargeView.xaml
     /// </summary>
-    public partial class ImagesLargeView : UserControl
+    public partial class PictureLargeView : UserControl
     {
-        public ImagesLargeView()
+        public PictureLargeView()
         {
             InitializeComponent();
         }

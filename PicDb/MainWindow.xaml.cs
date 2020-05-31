@@ -29,8 +29,8 @@ namespace PicDb
         {
             InitializeComponent();
             DataContext = new MainWindowViewModel();
-            ImagesViewControl.DataContext = new ImagesViewModel();
-            UsersViewControl.DataContext = new UsersViewModel();
+            ImagesViewControl.DataContext = new PicturesViewModel();
+            UsersViewControl.DataContext = new PhotographersViewModel();
         }
 
         private void ImagesButton_Click(object sender, RoutedEventArgs e)

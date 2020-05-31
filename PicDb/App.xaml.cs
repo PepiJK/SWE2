@@ -8,6 +8,7 @@ using System.Reflection;
 using System.Threading.Tasks;
 using System.Windows;
 using log4net;
+using PicDb.Data;
 
 namespace PicDb
 {
@@ -16,11 +17,13 @@ namespace PicDb
     /// </summary>
     public partial class App : Application
     {
-        private static readonly ILog log = LogManager.GetLogger(typeof(App));
+        private static readonly ILog _log = LogManager.GetLogger(typeof(App));
+        private readonly SqliteDAL _dal = new SqliteDAL();
 
         protected override void OnStartup(StartupEventArgs e)
         {
-            log.Info("=============  PicDb Start  =============");
+            _log.Info("=============  PicDb Start  =============");
+            _dal.Initialize();
             base.OnStartup(e);
         }
     }

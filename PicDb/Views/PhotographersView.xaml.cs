@@ -10,17 +10,19 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
+using PicDb.ViewModels;
 
 namespace PicDb.Views
 {
     /// <summary>
-    /// Interaction logic for ImagesListView.xaml
+    /// Interaction logic for UsersView.xaml
     /// </summary>
-    public partial class ImagesListView : UserControl
+    public partial class PhotographersView : UserControl
     {
-        public ImagesListView()
+        public PhotographersView()
         {
             InitializeComponent();
+            DataContext = new PhotographersViewModel();
         }
     }
 }

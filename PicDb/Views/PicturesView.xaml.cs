@@ -17,17 +17,17 @@ namespace PicDb.Views
     /// <summary>
     /// Interaction logic for ImagesView.xaml
     /// </summary>
-    public partial class ImagesView : UserControl
+    public partial class PicturesView : UserControl
     {
-        public ImagesView()
+        public PicturesView()
         {
             InitializeComponent();
-            DataContext = new ImagesViewModel();
+            DataContext = new PicturesViewModel();
             SearchViewControl.DataContext = new SearchViewModel();
-            ImagesLargeViewControl.DataContext = new ImagesLargeViewModel();
+            ImagesLargeViewControl.DataContext = new PictureLargeViewModel();
             ExifViewControl.DataContext = new ExifViewModel();
             IptcViewControl.DataContext = new IptcViewModel();
-            ImagesListViewControl.DataContext = new ImagesListViewModel();
+            ImagesListViewControl.DataContext = new PicturesListViewModel();
         }
     }
 }
