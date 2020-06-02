@@ -5,7 +5,7 @@ using System.Text;
 
 namespace PicDb.Data
 {
-    class MockDAL : IDAL
+    class DALMock : IDAL
     {
         public void Delete(Photographer photographer)
         {
