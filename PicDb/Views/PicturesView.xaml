@@ -8,7 +8,7 @@
              mc:Ignorable="d" 
              d:DesignHeight="450" d:DesignWidth="800">
 
-    <DockPanel>
+    <DockPanel Background="White">
 
         <views:SearchView DockPanel.Dock="Top" x:Name="SearchViewControl" Padding="0,10,10,10" Background="#f0f0f0"/>
 

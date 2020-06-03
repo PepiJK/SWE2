@@ -1,9 +1,10 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Text;
 using System.Windows;
+using System.Windows.Forms;
 using System.Windows.Input;
-using Microsoft.Win32;
 
 namespace PicDb.ViewModels
 {
@@ -19,8 +20,18 @@ namespace PicDb.ViewModels
  
         private void OnOpenDirectory(object commandParameter)
         {
-            OpenFileDialog openFileDialog = new OpenFileDialog();
-            openFileDialog.ShowDialog();
+            // uses windows forms dialog (no other option in wpf)
+            using(var fbd = new FolderBrowserDialog())
+            {
+                DialogResult result = fbd.ShowDialog();
+
+                if (result == DialogResult.OK && !string.IsNullOrWhiteSpace(fbd.SelectedPath))
+                {
+                    string[] files = Directory.GetFiles(fbd.SelectedPath);
+
+                    System.Windows.Forms.MessageBox.Show("Files found: " + files.Length.ToString(), "Message");
+                }
+            }
         }
     }
 }

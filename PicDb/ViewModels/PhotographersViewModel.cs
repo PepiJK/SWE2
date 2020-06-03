@@ -4,7 +4,8 @@ using System.Text;
 
 namespace PicDb.ViewModels
 {
-    class PhotographersViewModel
+    public class PhotographersViewModel
     {
+        
     }
 }

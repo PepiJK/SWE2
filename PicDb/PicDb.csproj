@@ -4,6 +4,7 @@
     <OutputType>WinExe</OutputType>
     <TargetFramework>netcoreapp3.1</TargetFramework>
     <UseWPF>true</UseWPF>
+    <UseWindowsForms>true</UseWindowsForms>
   </PropertyGroup>
 
   <ItemGroup>
@@ -36,6 +37,24 @@
     <Content Include="log4net.config">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
+  </ItemGroup>
+
+  <ItemGroup>
+    <Page Update="Views\PhotographerListView.xaml">
+      <Generator></Generator>
+    </Page>
+    <Page Update="Views\PhotographerInfoView.xaml">
+      <Generator></Generator>
+    </Page>
+  </ItemGroup>
+
+  <ItemGroup>
+    <Compile Update="Views\PhotographerListView.xaml.cs">
+      <DependentUpon>PhotographerListView.xaml</DependentUpon>
+    </Compile>
+    <Compile Update="Views\PhotographerInfoView.xaml.cs">
+      <DependentUpon>PhotographerInfoView.xaml</DependentUpon>
+    </Compile>
   </ItemGroup>
 
 </Project>
