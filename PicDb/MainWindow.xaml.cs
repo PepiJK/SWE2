@@ -17,6 +17,7 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
+using Microsoft.Win32;
 
 namespace PicDb
 {
@@ -48,6 +49,5 @@ namespace PicDb
             ImagesViewControl.Visibility = Visibility.Collapsed;
             UsersViewControl.Visibility = Visibility.Visible;
         }
-
     }
 }

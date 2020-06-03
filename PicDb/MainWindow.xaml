@@ -13,7 +13,9 @@
     <DockPanel>
 
         <Menu DockPanel.Dock="Top">
-            <MenuItem Header="_File"></MenuItem>
+            <MenuItem Header="_File">
+                <MenuItem Header="Open Directory" Command="{Binding OpenDirectoryCommand}"></MenuItem>
+            </MenuItem>
             <MenuItem Header="_Edit">
                 <MenuItem Command="ApplicationCommands.Copy"/>
                 <MenuItem Command="ApplicationCommands.Cut"/>
