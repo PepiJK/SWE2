@@ -1,23 +1,23 @@
-﻿<UserControl x:Class="PicDb.Views.PicturesView"
+﻿<UserControl x:Class="PicDb.Views.Pictures.PicturesView"
              xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
-             xmlns:local="clr-namespace:PicDb.Views"
              xmlns:views="clr-namespace:PicDb.Views"
+             xmlns:pictures="clr-namespace:PicDb.Views.Pictures"
              mc:Ignorable="d" 
              d:DesignHeight="450" d:DesignWidth="800">
 
     <DockPanel Background="White">
 
-        <views:SearchView DockPanel.Dock="Top" x:Name="SearchViewControl" Padding="0,10,10,10" Background="#f0f0f0"/>
+        <pictures:SearchView DockPanel.Dock="Top" x:Name="SearchViewControl" Padding="0,10,10,10" Background="#f0f0f0"/>
 
         <Grid>
 
             <Grid.RowDefinitions>
                 <RowDefinition Height="*"></RowDefinition>
                 <RowDefinition Height="5"></RowDefinition>
-                <RowDefinition Height="200" MinHeight="200"></RowDefinition>
+                <RowDefinition Height="200" MinHeight="200" MaxHeight="400"></RowDefinition>
             </Grid.RowDefinitions>
 
             <Grid>
@@ -25,19 +25,19 @@
                 <Grid.ColumnDefinitions>
                     <ColumnDefinition Width="*"></ColumnDefinition>
                     <ColumnDefinition Width="5"></ColumnDefinition>
-                    <ColumnDefinition Width="400" MinWidth="400"></ColumnDefinition>
+                    <ColumnDefinition Width="400" MinWidth="400" MaxWidth="600"></ColumnDefinition>
                 </Grid.ColumnDefinitions>
 
-                <views:PictureLargeView x:Name="ImagesLargeViewControl" Padding="10"/>
+                <pictures:PictureLargeView x:Name="ImagesLargeViewControl" Padding="10"/>
 
                 <GridSplitter Grid.Column="1" Width="5" HorizontalAlignment="Stretch"></GridSplitter>
 
                 <TabControl Grid.Column="2" Padding="0, 20, 0, 20">
                     <TabItem Header="EXIF">
-                        <views:ExifView x:Name="ExifViewControl"/>
+                        <pictures:ExifView x:Name="ExifViewControl"/>
                     </TabItem>
                     <TabItem Header="IPTC">
-                        <views:IptcView x:Name="IptcViewControl"/>
+                        <pictures:IptcView x:Name="IptcViewControl"/>
                     </TabItem>
                 </TabControl>
 
@@ -45,7 +45,7 @@
 
             <GridSplitter Grid.Row="1" Height="5" HorizontalAlignment="Stretch"></GridSplitter>
 
-            <views:PicturesListView Grid.Row="2" x:Name="ImagesListViewControl" Padding="10"/>
+            <pictures:PicturesListView Grid.Row="2" x:Name="ImagesListViewControl" Padding="10"/>
 
         </Grid>
     </DockPanel>

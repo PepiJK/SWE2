@@ -4,6 +4,8 @@
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:views="clr-namespace:PicDb.Views"
+        xmlns:photographers="clr-namespace:PicDb.Views.Photographers"
+        xmlns:pictures="clr-namespace:PicDb.Views.Pictures"
         mc:Ignorable="d"
         Icon="Assets/camera.png"
         Title="PicDb" Height="720" Width="1280">
@@ -11,7 +13,7 @@
 
     <DockPanel>
 
-        <Menu DockPanel.Dock="Top">
+        <Menu DockPanel.Dock="Top" Padding="0,5,0,0">
             <MenuItem Header="_File">
                 <MenuItem Header="Open Directory" Command="{Binding OpenDirectoryCommand}"></MenuItem>
             </MenuItem>
@@ -33,8 +35,8 @@
         </StackPanel>
 
         <Grid Background="#f0f0f0">
-            <views:PicturesView x:Name="ImagesViewControl"/>
-            <views:PhotographersView x:Name="UsersViewControl" Visibility="Collapsed"/>
+            <pictures:PicturesView x:Name="ImagesViewControl"/>
+            <photographers:PhotographersView x:Name="UsersViewControl" Visibility="Collapsed"/>
         </Grid>
 
     </DockPanel>

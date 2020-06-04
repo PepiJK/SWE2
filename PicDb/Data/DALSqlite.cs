@@ -3,6 +3,7 @@ using PicDb.Models;
 using System;
 using System.Collections.Generic;
 using System.Configuration;
+using System.Data;
 using System.Data.SQLite;
 using System.IO;
 
@@ -157,6 +158,7 @@ namespace PicDb.Data
                 }
             }
 
+            _log.Info("Get " + photographers.Count + " Photographers");
             return photographers;
         }
 

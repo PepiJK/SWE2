@@ -32,7 +32,9 @@ namespace PicDb
 			_dal.Save(new Photographer
 			{
 				Firstname = "Josef",
-				Lastname = "Koch"
+				Lastname = "Koch",
+				Birthdate = DateTime.Today,
+				Notes = "fdalfj\rdkafs\rdfksjaflk"
 			});
 
 			var photographers = _dal.GetPhotographers();

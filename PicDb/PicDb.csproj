@@ -40,20 +40,73 @@
   </ItemGroup>
 
   <ItemGroup>
-    <Page Update="Views\PhotographerListView.xaml">
+    <Page Update="Views\Pictures\ExifView.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Update="Views\Pictures\IptcView.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Update="Views\Pictures\PictureLargeView.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Update="Views\Pictures\PicturesListView.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Update="Views\Pictures\PicturesView.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Update="Views\Pictures\SearchView.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Update="Views\Photographers\PhotographerInfoView.xaml">
       <Generator></Generator>
     </Page>
-    <Page Update="Views\PhotographerInfoView.xaml">
+    <Page Update="Views\Photographers\PhotographerListView.xaml">
       <Generator></Generator>
+    </Page>
+    <Page Update="Views\Photographers\PhotographersView.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Update="MainWindow.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
     </Page>
   </ItemGroup>
 
   <ItemGroup>
-    <Compile Update="Views\PhotographerListView.xaml.cs">
+    <Compile Update="Views\Pictures\ExifView.xaml.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Update="Views\Pictures\IptcView.xaml.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Update="Views\Pictures\PictureLargeView.xaml.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Update="Views\Pictures\PicturesListView.xaml.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Update="Views\Pictures\PicturesView.xaml.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Update="Views\Pictures\SearchView.xaml.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Update="Views\Photographers\PhotographerInfoView.xaml.cs">
+      <DependentUpon>PhotographerInfoView.xaml</DependentUpon>
+    </Compile>
+    <Compile Update="Views\Photographers\PhotographerListView.xaml.cs">
       <DependentUpon>PhotographerListView.xaml</DependentUpon>
     </Compile>
-    <Compile Update="Views\PhotographerInfoView.xaml.cs">
-      <DependentUpon>PhotographerInfoView.xaml</DependentUpon>
+    <Compile Update="Views\Photographers\PhotographersView.xaml.cs">
+      <SubType>Code</SubType>
     </Compile>
   </ItemGroup>
 

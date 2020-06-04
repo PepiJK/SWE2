@@ -1,14 +1,12 @@
 ﻿using System.Windows.Controls;
-using PicDb.ViewModels;
 
-namespace PicDb.Views
+namespace PicDb.Views.Photographers
 {
     public partial class PhotographerListView : UserControl
     {
         public PhotographerListView()
         {
             InitializeComponent();
-            DataContext = new PhotographerListViewModel();
         }
     }
 }
