@@ -32,7 +32,7 @@
 
                 <GridSplitter Grid.Column="1" Width="5" HorizontalAlignment="Stretch"></GridSplitter>
 
-                <TabControl Grid.Column="2" Padding="10">
+                <TabControl Grid.Column="2" Padding="0, 20, 0, 20">
                     <TabItem Header="EXIF">
                         <views:ExifView x:Name="ExifViewControl"/>
                     </TabItem>

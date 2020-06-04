@@ -6,5 +6,31 @@
              xmlns:local="clr-namespace:PicDb.Views"
              mc:Ignorable="d" 
              d:DesignHeight="450" d:DesignWidth="800">
-    <TextBlock>ExifView</TextBlock>
+    <StackPanel>
+        <Grid Margin="5">
+            <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="Auto" />
+                    <ColumnDefinition Width="*" />
+            </Grid.ColumnDefinitions>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="Auto"/>
+            </Grid.RowDefinitions>
+            <Label Margin="0, 0, 0, 10">Id: </Label>
+            <TextBox Grid.Column="1" Margin="0, 0, 0, 10"></TextBox>
+            <Label Grid.Row="1" Margin="0, 0, 0, 10">Model: </Label>
+            <TextBox Grid.Row="1" Grid.Column="1" Margin="0, 0, 0, 10"></TextBox>
+            <Label Grid.Row="2" Margin="0, 0, 0, 10">Lens: </Label>
+            <TextBox Grid.Row="2" Grid.Column="1" Margin="0, 0, 0, 10"></TextBox>
+            <Label Grid.Row="3" Margin="0, 0, 0, 10">Focal Length: </Label>
+            <TextBox Grid.Row="3" Grid.Column="1" Margin="0, 0, 0, 10"></TextBox>
+            <Label Grid.Row="4" Margin="0, 0, 0, 10">Date: </Label>
+            <TextBox Grid.Row="4" Grid.Column="1" Margin="0, 0, 0, 10"></TextBox>
+            <Button Grid.Row="5" Grid.Column="1" Padding="10, 5, 10, 5" HorizontalAlignment="Right">Save</Button>
+        </Grid>
+    </StackPanel>
 </UserControl>
