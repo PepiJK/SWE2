@@ -22,7 +22,7 @@ namespace PicDb.Data
         /// </summary>
         /// <param name="id"></param>
         /// <returns>Picture model</returns>
-        public Picture GetImage(int id);
+        public Picture GetPicture(int id);
 
         /// <summary>
         /// Queries the database for all Photographers.

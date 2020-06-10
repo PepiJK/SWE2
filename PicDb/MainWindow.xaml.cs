@@ -32,19 +32,19 @@ namespace PicDb
             DataContext = new MainWindowViewModel();
         }
 
-        private void ImagesButton_Click(object sender, RoutedEventArgs e)
+        private void PicturesButton_Click(object sender, RoutedEventArgs e)
         {
-            ImagesButton.IsChecked = true;
+            PicturesButton.IsChecked = true;
             UsersButton.IsChecked = false;
-            ImagesViewControl.Visibility = Visibility.Visible;
+            PicturesViewControl.Visibility = Visibility.Visible;
             UsersViewControl.Visibility = Visibility.Collapsed;
         }
 
         private void UsersButton_Click(object sender, RoutedEventArgs e)
         {
             UsersButton.IsChecked = true;
-            ImagesButton.IsChecked = false;
-            ImagesViewControl.Visibility = Visibility.Collapsed;
+            PicturesButton.IsChecked = false;
+            PicturesViewControl.Visibility = Visibility.Collapsed;
             UsersViewControl.Visibility = Visibility.Visible;
         }
     }

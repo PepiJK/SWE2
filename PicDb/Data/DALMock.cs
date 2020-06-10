@@ -17,7 +17,7 @@ namespace PicDb.Data
             throw new NotImplementedException();
         }
 
-        public Picture GetImage(int id)
+        public Picture GetPicture(int id)
         {
             throw new NotImplementedException();
         }

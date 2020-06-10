@@ -4,7 +4,7 @@ using PicDb.ViewModels.Pictures;
 namespace PicDb.Views.Pictures
 {
     /// <summary>
-    /// Interaction logic for ImagesLargeView.xaml
+    /// Interaction logic for PicturesLargeView.xaml
     /// </summary>
     public partial class PictureLargeView : UserControl
     {

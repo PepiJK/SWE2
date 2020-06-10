@@ -4,7 +4,7 @@ using PicDb.ViewModels.Pictures;
 namespace PicDb.Views.Pictures
 {
     /// <summary>
-    /// Interaction logic for ImagesListView.xaml
+    /// Interaction logic for PicturesListView.xaml
     /// </summary>
     public partial class PicturesListView : UserControl
     {

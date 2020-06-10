@@ -1,17 +1,22 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.IO;
+using System.Linq;
 using System.Text;
 using System.Windows;
 using System.Windows.Input;
 using log4net;
+using PicDb.Business;
 using PicDb.Data;
+using PicDb.Models;
 
 namespace PicDb.ViewModels
 {
     class MainWindowViewModel : ViewModelBase
     {
         private static readonly ILog _log = LogManager.GetLogger(typeof(DALSqlite));
+        private readonly IDAL _dal = DALFactory.GetDAL();
+        private readonly BL _bl = new BL();
         private readonly DelegateCommand _openDirectoryCommand;
         private readonly DelegateCommand _showPhotographersViewCommand;
         
@@ -33,8 +38,8 @@ namespace PicDb.ViewModels
 
                 if (result ==  System.Windows.Forms.DialogResult.OK && !string.IsNullOrWhiteSpace(fbd.SelectedPath))
                 {
-                    string[] files = Directory.GetFiles(fbd.SelectedPath);
-                    System.Windows.Forms.MessageBox.Show("Files found: " + files.Length.ToString(), "Message");
+                    string[] dirs = Directory.GetFiles(fbd.SelectedPath);
+                    _bl.Save(dirs);
                 }
             }
         }

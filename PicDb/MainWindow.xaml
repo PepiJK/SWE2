@@ -26,7 +26,7 @@
         </Menu>
 
         <StackPanel DockPanel.Dock="Left" Background="#f0f0f0">
-            <ToggleButton Margin="15,10,15,5" Name="ImagesButton" IsChecked="True" Click="ImagesButton_Click">
+            <ToggleButton Margin="15,10,15,5" Name="PicturesButton" IsChecked="True" Click="PicturesButton_Click">
                 <Image Source="Assets/camera_alt.png" Width="25" Margin="5"></Image>
             </ToggleButton>
             <ToggleButton Name="UsersButton" Click="UsersButton_Click" Margin="15,5,15,10">
@@ -35,7 +35,7 @@
         </StackPanel>
 
         <Grid Background="#f0f0f0">
-            <pictures:PicturesView x:Name="ImagesViewControl"/>
+            <pictures:PicturesView x:Name="PicturesViewControl"/>
             <photographers:PhotographersView x:Name="UsersViewControl" Visibility="Collapsed"/>
         </Grid>
 

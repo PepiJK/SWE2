@@ -80,7 +80,7 @@ namespace PicDb.Data
             _log.Info("DALSqlite initialized");
         }
 
-        public Picture GetImage(int id)
+        public Picture GetPicture(int id)
         {
             throw new NotImplementedException();
         }

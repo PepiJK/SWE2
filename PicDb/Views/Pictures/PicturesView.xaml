@@ -28,7 +28,7 @@
                     <ColumnDefinition Width="400" MinWidth="400" MaxWidth="600"></ColumnDefinition>
                 </Grid.ColumnDefinitions>
 
-                <pictures:PictureLargeView x:Name="ImagesLargeViewControl" Padding="10"/>
+                <pictures:PictureLargeView x:Name="PicturesLargeViewControl" Padding="10"/>
 
                 <GridSplitter Grid.Column="1" Width="5" HorizontalAlignment="Stretch"></GridSplitter>
 
@@ -45,7 +45,7 @@
 
             <GridSplitter Grid.Row="1" Height="5" HorizontalAlignment="Stretch"></GridSplitter>
 
-            <pictures:PicturesListView Grid.Row="2" x:Name="ImagesListViewControl" Padding="10"/>
+            <pictures:PicturesListView Grid.Row="2" x:Name="PicturesListViewControl" Padding="10"/>
 
         </Grid>
     </DockPanel>

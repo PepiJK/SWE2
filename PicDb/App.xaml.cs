@@ -28,7 +28,7 @@ namespace PicDb
 
 			
 			// DAL Tests
-			/*
+			
 			_dal.Save(new Photographer
 			{
 				Firstname = "Josef",
@@ -37,6 +37,7 @@ namespace PicDb
 				Notes = "fdalfj\rdkafs\rdfksjaflk"
 			});
 
+			/*
 			var photographers = _dal.GetPhotographers();
 
 			_dal.Save(new Picture
