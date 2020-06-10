@@ -40,6 +40,5 @@ namespace PicDb.ViewModels.Photographers
                 _log.Info("Selected Photographer " + value.Lastname);
             }
         }
-
     }
 }

@@ -1,6 +1,20 @@
-﻿namespace PicDb.ViewModels.Pictures
+﻿using PicDb.ViewModels.EventArguments;
+using PicDb.ViewModels.Photographers;
+
+namespace PicDb.ViewModels.Pictures
 {
-    class PicturesViewModel : ViewModelBase
+    public class PicturesViewModel : ViewModelBase
     {
+        public PicturesListViewModel PicturesListViewModel { get; }
+        
+        public PicturesViewModel()
+        {
+            PicturesListViewModel = new PicturesListViewModel();
+            PicturesListViewModel.OnPictureChanged += OnPictureChanged;
+        }
+        
+        private void OnPictureChanged(object sender, PictureEventArguments args)
+        {
+        }
     }
 }

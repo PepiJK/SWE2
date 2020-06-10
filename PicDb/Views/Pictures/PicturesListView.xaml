@@ -6,6 +6,18 @@
              mc:Ignorable="d" 
              d:DesignHeight="450" d:DesignWidth="800">
     <StackPanel Margin="10">
-        <ListBox ItemsSource="{Binding Source={StaticResource C:\Users\thoma\Pictures\swagbilder\Projektteam\587839c32d.jpg}}"/>
+        <ListBox ItemsSource="{Binding Pictures}" SelectedItem="{Binding SelectedPicture, Mode=TwoWay}" HorizontalContentAlignment="Stretch">
+            <ListBox.ItemTemplate>
+                <DataTemplate>
+                    <TextBlock Margin="5,5,0,5">
+                        <TextBlock.Text>    
+                            <MultiBinding StringFormat="{}{0} {1}">
+                                <Binding Path="Directory" />
+                            </MultiBinding>
+                        </TextBlock.Text>
+                    </TextBlock>
+                </DataTemplate>
+            </ListBox.ItemTemplate>
+        </ListBox>
     </StackPanel>
 </UserControl>
