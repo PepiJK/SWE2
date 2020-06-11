@@ -1,18 +1,30 @@
 ﻿using System;
-using System.Linq;
 using log4net;
-using PicDb.Business;
 using PicDb.Data;
 using PicDb.ViewModels.EventArguments;
 
 namespace PicDb.ViewModels.Photographers
 {
+    /// <summary>
+    /// Parent VM for photographer list and info.
+    /// </summary>
     public class PhotographersViewModel : ViewModelBase
     {
         private static readonly ILog Log = LogManager.GetLogger(typeof(DALSqlite));
+        
+        /// <summary>
+        /// VM for the photographer list.
+        /// </summary>
         public PhotographerListViewModel PhotographerListViewModel { get;}
+        
+        /// <summary>
+        /// VM for the photographer info.
+        /// </summary>
         public PhotographerInfoViewModel PhotographerInfoViewModel { get;}
         
+        /// <summary>
+        /// Constructor that initializes the photographer info vm, list vm and their event handlers.
+        /// </summary>
         public PhotographersViewModel()
         {
             PhotographerListViewModel = new PhotographerListViewModel();

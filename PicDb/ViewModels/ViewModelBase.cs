@@ -4,9 +4,15 @@ using System.Runtime.CompilerServices;
 
 namespace PicDb.ViewModels
 {
-    //source: https://intellitect.com/getting-started-model-view-viewmodel-mvvm-pattern-using-windows-presentation-framework-wpf/
+    /// <summary>
+    /// View model base to implement the property changed.
+    /// source: https://intellitect.com/getting-started-model-view-viewmodel-mvvm-pattern-using-windows-presentation-framework-wpf/
+    /// </summary>
     public abstract class ViewModelBase : INotifyPropertyChanged
     {
+        /// <summary>
+        /// Property changed event handler to update a property.
+        /// </summary>
         public event PropertyChangedEventHandler PropertyChanged;
  
         protected bool SetProperty<T>(ref T field, T newValue, [CallerMemberName]string propertyName = null)

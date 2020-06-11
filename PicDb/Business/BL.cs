@@ -41,13 +41,24 @@ namespace PicDb.Business
             }
         }
 
+        public void Save(Photographer photographer)
+        {
+            CheckPhotographerValidity(photographer);
+            _dal.Save(photographer);
+        }
+
         public void UpdatePhotographer(Photographer photographer)
+        {
+            CheckPhotographerValidity(photographer);
+            _dal.Update(photographer);
+        }
+
+        private void CheckPhotographerValidity(Photographer photographer)
         {
             if (photographer == null) throw new NullReferenceException();
             if (string.IsNullOrWhiteSpace(photographer.Firstname)) throw new Exception("Firstname is empty.");
             if (string.IsNullOrWhiteSpace(photographer.Lastname)) throw new Exception("Lastname is empty");
             if (photographer.Birthdate.HasValue && photographer.Birthdate > DateTime.Now) throw new Exception("Birthdate is not in the past.");
-            _dal.Update(photographer);
         }
     }
 }
