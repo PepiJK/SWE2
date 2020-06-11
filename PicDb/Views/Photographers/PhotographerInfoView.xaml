@@ -5,36 +5,52 @@
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
              mc:Ignorable="d"
              d:DesignHeight="300" d:DesignWidth="300">
-    <Grid Margin="5">
-        <Grid.ColumnDefinitions>
-            <ColumnDefinition Width="Auto" />
-            <ColumnDefinition Width="*" />
-        </Grid.ColumnDefinitions>
-        <Grid.RowDefinitions>
-            <RowDefinition Height="Auto" />
-            <RowDefinition Height="Auto" />
-            <RowDefinition Height="Auto" />
-            <RowDefinition Height="Auto" />
-            <RowDefinition Height="Auto" />
-            <RowDefinition Height="Auto" />
-        </Grid.RowDefinitions>
 
-        <Label Grid.Row="0" Margin="0,0,0,10">Firstname: </Label>
-        <TextBox VerticalContentAlignment="Center" Grid.Column="1" Margin="0,0,0,10"
-                 Text="{Binding SelectedPhotographer.Firstname}" />
+    <UserControl.Resources>
+        <BooleanToVisibilityConverter x:Key="BoolToVisibilityConverter" />
+    </UserControl.Resources>
 
-        <Label Grid.Row="1" Margin="0,0,0,10">Lastname: </Label>
-        <TextBox VerticalContentAlignment="Center" Grid.Row="1" Grid.Column="1" Margin="0,0,0,10"
-                 Text="{Binding SelectedPhotographer.Lastname}" />
+    <Grid>
+        <TextBlock Visibility="{Binding PhotographerNotSelected, Converter={StaticResource BoolToVisibilityConverter}}">
+            No Photographer selected
+        </TextBlock>
+        
+        <Grid Margin="5"
+              Visibility="{Binding PhotographerSelected, Converter={StaticResource BoolToVisibilityConverter}}">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="Auto" />
+                <ColumnDefinition Width="*" />
+            </Grid.ColumnDefinitions>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="Auto" />
+                <RowDefinition Height="Auto" />
+                <RowDefinition Height="Auto" />
+                <RowDefinition Height="Auto" />
+                <RowDefinition Height="Auto" />
+                <RowDefinition Height="Auto" />
+            </Grid.RowDefinitions>
 
-        <Label VerticalContentAlignment="Center" Grid.Row="2" Margin="0,0,0,10">Birthdate: </Label>
-        <DatePicker Margin="0,0,0,10" VerticalAlignment="Top" Grid.Row="2" Grid.Column="1"
-                    Text="{Binding SelectedPhotographer.Birthdate}" />
+            <Label Grid.Row="0" Margin="0,0,0,10">Firstname: </Label>
+            <TextBox VerticalContentAlignment="Center" Grid.Column="1" Margin="0,0,0,10"
+                     Text="{Binding Path=Firstname, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"/>
 
-        <Label Grid.Row="3" Margin="0,0,0,10">Notes: </Label>
-        <TextBox TextWrapping="Wrap" AcceptsReturn="True" VerticalContentAlignment="Center" Grid.Row="3"
-                 Grid.Column="1" Margin="0,0,0,10" Text="{Binding SelectedPhotographer.Notes}" />
+            <Label Grid.Row="1" Margin="0,0,0,10">Lastname: </Label>
+            <TextBox VerticalContentAlignment="Center" Grid.Row="1" Grid.Column="1" Margin="0,0,0,10"
+                     Text="{Binding Lastname, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" />
 
-        <Button Grid.Row="5" Grid.Column="1" Padding="10,5,10,5" HorizontalAlignment="Right">Save</Button>
+            <Label VerticalContentAlignment="Center" Grid.Row="2" Margin="0,0,0,10">Birthdate: </Label>
+            <DatePicker Margin="0,0,0,10" VerticalAlignment="Top" Grid.Row="2" Grid.Column="1"
+                        SelectedDate="{Binding Birthdate, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" />
+
+            <Label Grid.Row="3" Margin="0,0,0,10">Notes: </Label>
+            <TextBox TextWrapping="Wrap" AcceptsReturn="True" VerticalContentAlignment="Center" Grid.Row="3"
+                     Grid.Column="1" Margin="0,0,0,10" Text="{Binding Notes, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" />
+
+            <Button Grid.Row="5" Grid.Column="1" Padding="10,5,10,5" HorizontalAlignment="Right"
+                    Command="{Binding SavePhotographerCommand}">
+                Save
+            </Button>
+        </Grid>
     </Grid>
+
 </UserControl>

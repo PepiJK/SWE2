@@ -21,7 +21,7 @@ namespace PicDb.ViewModels.Photographers
         
         public PhotographerListViewModel()
         {
-            _photographers = _bl.GetPhotographers().ToList();
+           UpdatePhotographersList();
         }
         
         public List<Photographer> Photographers
@@ -39,6 +39,11 @@ namespace PicDb.ViewModels.Photographers
                 OnPhotographerChanged?.Invoke(this, new PhotographerEventArgs{Photographer = value});
                 Log.Info("Selected Photographer " + value.Lastname);
             }
+        }
+
+        public void UpdatePhotographersList()
+        {
+            Photographers = _bl.GetPhotographers().ToList();
         }
     }
 }

@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Drawing;
 using System.Linq;
+using System.Windows.Automation;
 using PicDb.Data;
 using PicDb.Models;
 
@@ -38,6 +39,15 @@ namespace PicDb.Business
                     _dal.Save(picture);
                 }
             }
+        }
+
+        public void UpdatePhotographer(Photographer photographer)
+        {
+            if (photographer == null) throw new NullReferenceException();
+            if (string.IsNullOrWhiteSpace(photographer.Firstname)) throw new Exception("Firstname is empty.");
+            if (string.IsNullOrWhiteSpace(photographer.Lastname)) throw new Exception("Lastname is empty");
+            if (photographer.Birthdate.HasValue && photographer.Birthdate > DateTime.Now) throw new Exception("Birthdate is not in the past.");
+            _dal.Update(photographer);
         }
     }
 }
