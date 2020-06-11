@@ -3,40 +3,46 @@
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-        xmlns:views="clr-namespace:PicDb.Views"
         xmlns:photographers="clr-namespace:PicDb.Views.Photographers"
         xmlns:pictures="clr-namespace:PicDb.Views.Pictures"
         mc:Ignorable="d"
-        Icon="Assets/camera.png"
+        Icon="Assets/camera_new.png"
         Title="PicDb" Height="720" Width="1280">
 
+    <Window.Resources>
+        <BooleanToVisibilityConverter x:Key="BoolToVisibilityConverter" />
+    </Window.Resources>
 
     <DockPanel>
-
+        
         <Menu DockPanel.Dock="Top" Padding="0,5,0,0">
             <MenuItem Header="_File">
-                <MenuItem Header="Open Directory" Command="{Binding OpenDirectoryCommand}"></MenuItem>
+                <MenuItem Header="Open Directory" Command="{Binding OpenDirectoryCommand}" />
             </MenuItem>
             <MenuItem Header="_Edit">
-                <MenuItem Command="ApplicationCommands.Copy"/>
-                <MenuItem Command="ApplicationCommands.Cut"/>
-                <MenuItem Command="ApplicationCommands.Paste"/>
+                <MenuItem Command="ApplicationCommands.Copy" />
+                <MenuItem Command="ApplicationCommands.Cut" />
+                <MenuItem Command="ApplicationCommands.Paste" />
             </MenuItem>
-            <MenuItem Header="_Options"></MenuItem>
+            <MenuItem Header="_Options" />
         </Menu>
 
         <StackPanel DockPanel.Dock="Left" Background="#f0f0f0">
-            <ToggleButton Margin="15,10,15,5" Name="PicturesButton" IsChecked="True" Click="PicturesButton_Click">
-                <Image Source="Assets/camera_alt.png" Width="25" Margin="5"></Image>
+            <ToggleButton Margin="15,10,15,5" IsChecked="{Binding PicturesToggleIsChecked}" Command="{Binding ShowPicturesViewCommand}">
+                <Image Source="Assets/camera_alt.png" Width="25" Margin="5" />
             </ToggleButton>
-            <ToggleButton Name="UsersButton" Click="UsersButton_Click" Margin="15,5,15,10">
-                <Image Source="Assets/account_box.png" Width="25" Margin="5"></Image>
+            <ToggleButton Margin="15,5,15,10" IsChecked="{Binding PhotographersToggleIsChecked}" Command="{Binding ShowPhotographersViewCommand}">
+                <Image Source="Assets/account_box.png" Width="25" Margin="5" />
             </ToggleButton>
         </StackPanel>
 
-        <Grid Background="#f0f0f0">
-            <pictures:PicturesView x:Name="PicturesViewControl"/>
-            <photographers:PhotographersView x:Name="UsersViewControl" Visibility="Collapsed"/>
+        <Grid>
+            <Grid Background="#f0f0f0" Visibility="{Binding PicturesToggleIsChecked, Converter={StaticResource BoolToVisibilityConverter}}">
+                <pictures:PicturesView DataContext="{Binding PicturesViewModel}" />
+            </Grid>
+            <Grid Background="#f0f0f0" Visibility="{Binding PhotographersToggleIsChecked, Converter={StaticResource BoolToVisibilityConverter}}">
+                <photographers:PhotographersView DataContext="{Binding PhotographersViewModel}" />
+            </Grid>
         </Grid>
 
     </DockPanel>

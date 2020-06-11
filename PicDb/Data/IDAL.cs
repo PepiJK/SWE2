@@ -11,7 +11,7 @@ namespace PicDb.Data
         public void Initialize();
 
         /// <summary>
-        /// Queries the database for a Photoprapher by its given id.
+        /// Queries the database for a Photographer by its given id.
         /// </summary>
         /// <param name="id"></param>
         /// <returns>Photographer model</returns>

@@ -18,17 +18,17 @@ namespace PicDb
 	/// </summary>
 	public partial class App : Application
 	{
-		private static readonly ILog _log = LogManager.GetLogger(typeof(App));
+		private static readonly ILog Log = LogManager.GetLogger(typeof(App));
 		private readonly IDAL _dal = DALFactory.GetDAL();
 
 		protected override void OnStartup(StartupEventArgs e)
 		{
-			_log.Info("=============  PicDb Start  =============");
+			Log.Info("=============  PicDb Start  =============");
 			_dal.Initialize();
 
 			
 			// DAL Tests
-			
+			/*
 			_dal.Save(new Photographer
 			{
 				Firstname = "Josef",
@@ -36,8 +36,7 @@ namespace PicDb
 				Birthdate = DateTime.Today,
 				Notes = "fdalfj\rdkafs\rdfksjaflk"
 			});
-
-			/*
+			
 			var photographers = _dal.GetPhotographers();
 
 			_dal.Save(new Picture

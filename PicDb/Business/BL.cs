@@ -21,14 +21,14 @@ namespace PicDb.Business
             return _dal.GetPictures();
         }
 
-        public void Save(string[] dirs)
+        public void SavePicturesFromDir(IEnumerable<string> dirs)
         {
             foreach (var dir in dirs)
             {
-                string[] subStringFile = dir.Split('.');
-                string[] subStringFilename = dir.Split('\\');
-                string filename = subStringFilename.Last();
-                string type = subStringFile.Last();
+                var subStringFile = dir.Split('.');
+                var subStringFilename = dir.Split('\\');
+                var filename = subStringFilename.Last();
+                var type = subStringFile.Last();
 
                 if (type == "png" || type == "gif" || type == "jpg" || type == "jpeg")
                 {

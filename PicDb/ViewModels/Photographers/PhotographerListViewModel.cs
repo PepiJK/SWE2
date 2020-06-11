@@ -11,7 +11,7 @@ namespace PicDb.ViewModels.Photographers
 {
     public class PhotographerListViewModel : ViewModelBase
     {
-        private static readonly ILog _log = LogManager.GetLogger(typeof(DALSqlite));
+        private static readonly ILog Log = LogManager.GetLogger(typeof(DALSqlite));
         private readonly BL _bl = new BL();
 
         private List<Photographer> _photographers;
@@ -37,7 +37,7 @@ namespace PicDb.ViewModels.Photographers
             {
                 SetProperty(ref _selectedPhotographer, value);
                 OnPhotographerChanged?.Invoke(this, new PhotographerEventArgs{Photographer = value});
-                _log.Info("Selected Photographer " + value.Lastname);
+                Log.Info("Selected Photographer " + value.Lastname);
             }
         }
     }

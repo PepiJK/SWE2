@@ -11,8 +11,6 @@ namespace PicDb.Views.Photographers
         public PhotographersView()
         {
             InitializeComponent();
-            DataContext = new PhotographersViewModel();
-            
         }
     }
 }

@@ -11,7 +11,7 @@ namespace PicDb.Data
 {
     class DALSqlite : IDAL
     {
-        private static readonly ILog _log = LogManager.GetLogger(typeof(DALSqlite));
+        private static readonly ILog Log = LogManager.GetLogger(typeof(DALSqlite));
         private readonly string _dbFileName;
         private readonly string _connectionString;
 
@@ -30,7 +30,7 @@ namespace PicDb.Data
                     Directory.CreateDirectory(Path.GetDirectoryName(_dbFileName));
                 var file = File.Create(_dbFileName);
                 file.Close();
-                _log.Info($"Created Sqlite database {_dbFileName}");
+                Log.Info($"Created Sqlite database {_dbFileName}");
             }
 
             CreateTable("photographer", @"
@@ -77,7 +77,7 @@ namespace PicDb.Data
                 )"
             );
 
-            _log.Info("DALSqlite initialized");
+            Log.Info("DALSqlite initialized");
         }
 
         public Picture GetPicture(int id)
@@ -110,7 +110,7 @@ namespace PicDb.Data
                 }
             }
 
-            _log.Info("Get Photographer " + photographer?.Lastname);
+            Log.Info("Get Photographer " + photographer?.Lastname);
             return photographer;
         }
 
@@ -124,7 +124,7 @@ namespace PicDb.Data
             command.Parameters.AddWithValue("id", photographer.Id);
 
             command.ExecuteNonQuery();
-            _log.Info("Deleted Photographer " + photographer.Lastname);
+            Log.Info("Deleted Photographer " + photographer.Lastname);
         }
 
         public void Delete(Picture picture)
@@ -158,7 +158,7 @@ namespace PicDb.Data
                 }
             }
 
-            _log.Info("Get " + photographers.Count + " Photographers");
+            Log.Info("Get " + photographers.Count + " Photographers");
             return photographers;
         }
 
@@ -209,7 +209,7 @@ namespace PicDb.Data
                 }
             }
 
-            _log.Info("Get " + pictures.Count + " Pictures ");
+            Log.Info("Get " + pictures.Count + " Pictures ");
             return pictures;
         }
 
@@ -231,7 +231,7 @@ namespace PicDb.Data
             command.Parameters.AddWithValue("notes", photographer.Notes);
 
             command.ExecuteNonQuery();
-            _log.Info("Inserted new Photographer " + photographer.Lastname);
+            Log.Info("Inserted new Photographer " + photographer.Lastname);
         }
 
         public void Save(Picture picture)
@@ -251,7 +251,7 @@ namespace PicDb.Data
                 command.Parameters.AddWithValue("credit", picture.Iptc.Credit);
                 command.Parameters.AddWithValue("copyright", picture.Iptc.Copyright);
                 command.ExecuteNonQuery();
-                _log.Info("Inserted new Iptc");
+                Log.Info("Inserted new Iptc");
 
                 command.CommandText = "SELECT last_insert_rowid() FROM iptc";
                 iptcId = Convert.ToInt32(command.ExecuteScalar());
@@ -265,7 +265,7 @@ namespace PicDb.Data
                 command.Parameters.AddWithValue("focal_length", picture.Exif.FocalLength);
                 command.Parameters.AddWithValue("datetime_original", picture.Exif.DateTimeOriginal);
                 command.ExecuteNonQuery();
-                _log.Info("Inserted new Exif");
+                Log.Info("Inserted new Exif");
 
                 command.CommandText = "SELECT last_insert_rowid() FROM exif";
                 exifId = Convert.ToInt32(command.ExecuteScalar());
@@ -279,7 +279,7 @@ namespace PicDb.Data
             command.Parameters.AddWithValue("photographer_id", picture.PhotographerId);
 
             command.ExecuteNonQuery();
-            _log.Info("Inserted new Picture " + picture.Filename);
+            Log.Info("Inserted new Picture " + picture.Filename);
         }
 
         public void Update(Photographer photographer)
@@ -296,7 +296,7 @@ namespace PicDb.Data
             command.Parameters.AddWithValue("id", photographer.Id);
 
             command.ExecuteNonQuery();
-            _log.Info("Updated Photographer " + photographer.Lastname);
+            Log.Info("Updated Photographer " + photographer.Lastname);
         }
 
         public void Update(Picture picture)
@@ -326,7 +326,7 @@ namespace PicDb.Data
 
             command.CommandText = createTableCommand;
             command.ExecuteNonQuery();
-            _log.Info("Created Table " + table);
+            Log.Info("Created Table " + table);
         }
 
         private Iptc GetIptc(int id)

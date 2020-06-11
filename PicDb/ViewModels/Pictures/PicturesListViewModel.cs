@@ -11,7 +11,7 @@ namespace PicDb.ViewModels.Pictures
 {
     public class PicturesListViewModel : ViewModelBase
     {
-        private static readonly ILog _log = LogManager.GetLogger(typeof(DALSqlite));
+        private static readonly ILog Log = LogManager.GetLogger(typeof(DALSqlite));
         private readonly BL _bl = new BL();
         
         private List<Picture> _pictures;
@@ -37,7 +37,7 @@ namespace PicDb.ViewModels.Pictures
             {
                 SetProperty(ref _selectedPicture, value);
                 OnPictureChanged?.Invoke(this, new PictureEventArguments(){Picture = value});
-                _log.Info("Selected Picture " + value.Filename);
+                Log.Info("Selected Picture " + value.Filename);
             }
         }
     }

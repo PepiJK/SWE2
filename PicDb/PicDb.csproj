@@ -108,6 +108,10 @@
     <Compile Update="Views\Photographers\PhotographersView.xaml.cs">
       <SubType>Code</SubType>
     </Compile>
+    <None Remove="Assets\camera_new.png" />
+    <Resource Include="Assets\camera_new.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Resource>
   </ItemGroup>
 
 </Project>

@@ -45,7 +45,7 @@
 
             <GridSplitter Grid.Row="1" Height="5" HorizontalAlignment="Stretch"></GridSplitter>
 
-            <pictures:PicturesListView Grid.Row="2" x:Name="PicturesListViewControl" Padding="10"/>
+            <pictures:PicturesListView Grid.Row="2" DataContext="{Binding PicturesListViewModel}" Padding="10"/>
 
         </Grid>
     </DockPanel>
