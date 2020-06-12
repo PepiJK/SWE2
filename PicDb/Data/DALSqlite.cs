@@ -9,7 +9,7 @@ using System.IO;
 
 namespace PicDb.Data
 {
-    class DALSqlite : IDAL
+    public class DALSqlite : IDAL
     {
         private static readonly ILog Log = LogManager.GetLogger(typeof(DALSqlite));
         private readonly string _dbFileName;
@@ -216,6 +216,28 @@ namespace PicDb.Data
         public IEnumerable<Picture> GetPictures(string searchString)
         {
             throw new NotImplementedException();
+        }
+
+        public bool PictureExists(Picture picture)
+        {
+            using var connection = new SQLiteConnection(_connectionString);
+            connection.Open();
+
+            var command = connection.CreateCommand();
+            command.CommandText = "SELECT count(id) FROM picture WHERE directory=@directory AND filename=@filename";
+            command.Parameters.AddWithValue("directory", picture.Directory);
+            command.Parameters.AddWithValue("filename", picture.Filename);
+            
+            var exists = false;
+            using (var reader = command.ExecuteReader())
+            {
+                while (reader.Read())
+                {
+                    exists = reader.GetBoolean(0);
+                }
+            }
+
+            return exists;
         }
 
         public void Save(Photographer photographer)

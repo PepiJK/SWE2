@@ -14,14 +14,7 @@
         <ListBox Grid.Row="0" ItemsSource="{Binding Photographers}" SelectedItem="{Binding SelectedPhotographer}" HorizontalContentAlignment="Stretch">
             <ListBox.ItemTemplate>
                 <DataTemplate>
-                    <TextBlock Margin="5,5,0,5">
-                        <TextBlock.Text>    
-                            <MultiBinding StringFormat="{}{0} {1}">
-                                <Binding Path="Firstname" />
-                                <Binding Path="Lastname" />
-                            </MultiBinding>
-                        </TextBlock.Text>
-                    </TextBlock>
+                    <TextBlock Margin="5,5,0,5" Text="{Binding FullName}"></TextBlock>
                 </DataTemplate>
             </ListBox.ItemTemplate>
         </ListBox>

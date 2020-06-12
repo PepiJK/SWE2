@@ -22,8 +22,10 @@ namespace PicDb.Business
             return _dal.GetPictures();
         }
 
-        public void SavePicturesFromDir(IEnumerable<string> dirs)
+        public IEnumerable<Picture> SavePicturesFromDir(IEnumerable<string> dirs)
         {
+            //TODO: Check if picture already exists in db (compare with FullPath)
+            var pictures = new List<Picture>();
             foreach (var dir in dirs)
             {
                 var subStringFile = dir.Split('.');
@@ -33,12 +35,19 @@ namespace PicDb.Business
 
                 if (type == "png" || type == "gif" || type == "jpg" || type == "jpeg")
                 {
-                    Picture picture = new Picture();
-                    picture.Filename = filename;
-                    picture.Directory = dir;
-                    _dal.Save(picture);
+                    var picture = new Picture
+                    {
+                        Filename = filename, 
+                        Directory = dir.Substring(0, dir.Length - filename.Length)
+                    };
+                    
+                    if (!_dal.PictureExists(picture)) _dal.Save(picture);
+                    
+                    pictures.Add(picture);
                 }
             }
+
+            return pictures;
         }
 
         public void Save(Photographer photographer)

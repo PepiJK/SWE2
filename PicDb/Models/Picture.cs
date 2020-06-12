@@ -16,5 +16,7 @@ namespace PicDb.Models
 		public Exif Exif { get; set; }
 		public int? PhotographerId { get; set; }
 		public Photographer Photographer { get; set; }
+
+		public string FullPath => Directory + Filename;
 	}
 }

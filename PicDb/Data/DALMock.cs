@@ -5,7 +5,7 @@ using System.Text;
 
 namespace PicDb.Data
 {
-    class DALMock : IDAL
+    public class DALMock : IDAL
     {
         public void Delete(Photographer photographer)
         {
@@ -13,6 +13,11 @@ namespace PicDb.Data
         }
 
         public void Delete(Picture picture)
+        {
+            throw new NotImplementedException();
+        }
+
+        public bool PictureExists(Picture picture)
         {
             throw new NotImplementedException();
         }

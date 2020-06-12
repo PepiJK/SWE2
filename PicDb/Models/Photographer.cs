@@ -12,6 +12,6 @@ namespace PicDb.Models
 		public DateTime? Birthdate { get; set; }
 		public string Notes { get; set; }
 
-		public List<Picture> Pictures { get; set; }
+		public string FullName => Firstname + " " + Lastname;
 	}
 }

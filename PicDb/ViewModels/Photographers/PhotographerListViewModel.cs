@@ -31,7 +31,7 @@ namespace PicDb.ViewModels.Photographers
         /// Command to add a new photographer.
         /// </summary>
         public ICommand AddNewPhotographerCommand => _addNewPhotographerCommand;
-        
+
         /// <summary>
         /// List of all available photographers.
         /// </summary>

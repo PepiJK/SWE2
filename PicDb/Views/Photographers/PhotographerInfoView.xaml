@@ -31,18 +31,18 @@
             </Grid.RowDefinitions>
 
             <Label Grid.Row="0" Margin="0,0,0,10">Firstname: </Label>
-            <TextBox VerticalContentAlignment="Center" Grid.Column="1" Margin="0,0,0,10"
+            <TextBox VerticalContentAlignment="Center" Grid.Row="0" Grid.Column="1" Margin="0,0,0,10"
                      Text="{Binding Path=Firstname, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"/>
 
-            <Label Grid.Row="1" Margin="0,0,0,10">Lastname: </Label>
+            <Label Grid.Row="1" Grid.Column="0" Margin="0,0,0,10">Lastname: </Label>
             <TextBox VerticalContentAlignment="Center" Grid.Row="1" Grid.Column="1" Margin="0,0,0,10"
                      Text="{Binding Lastname, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" />
 
-            <Label VerticalContentAlignment="Center" Grid.Row="2" Margin="0,0,0,10">Birthdate: </Label>
+            <Label VerticalContentAlignment="Center" Grid.Row="2" Grid.Column="0" Margin="0,0,0,10">Birthdate: </Label>
             <DatePicker Margin="0,0,0,10" VerticalAlignment="Top" Grid.Row="2" Grid.Column="1"
                         SelectedDate="{Binding Birthdate, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" />
 
-            <Label Grid.Row="3" Margin="0,0,0,10">Notes: </Label>
+            <Label Grid.Row="3" Grid.Column="0" Margin="0,0,0,10">Notes: </Label>
             <TextBox TextWrapping="Wrap" AcceptsReturn="True" VerticalContentAlignment="Center" Grid.Row="3"
                      Grid.Column="1" Margin="0,0,0,10" Text="{Binding Notes, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" />
 

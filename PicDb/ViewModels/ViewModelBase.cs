@@ -5,7 +5,7 @@ using System.Runtime.CompilerServices;
 namespace PicDb.ViewModels
 {
     /// <summary>
-    /// View model base to implement the property changed.
+    /// View model base that implements INotifyPropertyChanged.
     /// source: https://intellitect.com/getting-started-model-view-viewmodel-mvvm-pattern-using-windows-presentation-framework-wpf/
     /// </summary>
     public abstract class ViewModelBase : INotifyPropertyChanged

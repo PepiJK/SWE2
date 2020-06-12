@@ -4,7 +4,7 @@ using System.Windows.Input;
 namespace PicDb.ViewModels
 {
     /// <summary>
-    /// Helper class for commands.
+    /// Delegate command class that implements ICommand.
     /// source: https://intellitect.com/getting-started-model-view-viewmodel-mvvm-pattern-using-windows-presentation-framework-wpf/
     /// </summary>
     public class DelegateCommand : ICommand

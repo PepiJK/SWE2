@@ -6,7 +6,7 @@ namespace PicDb.Data
     public interface IDAL
     {
         /// <summary>
-        /// Initalizes the database connection and creates the tables.
+        /// Initializes the database connection and creates the tables.
         /// </summary>
         public void Initialize();
 
@@ -85,5 +85,12 @@ namespace PicDb.Data
         /// </summary>
         /// <param name="picture"></param>
         public void Delete(Picture picture);
+
+        /// <summary>
+        /// Check if a Picture already exists in the database.
+        /// </summary>
+        /// <param name="picture"></param>
+        /// <returns></returns>
+        public bool PictureExists(Picture picture);
     }
 }

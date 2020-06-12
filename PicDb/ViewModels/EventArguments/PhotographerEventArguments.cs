@@ -4,7 +4,7 @@ using PicDb.Models;
 namespace PicDb.ViewModels.EventArguments
 {
     /// <summary>
-    /// Event handler arguments for the photographer list vm to notify parent that a new photographer has been selected.
+    /// Event handler arguments for the photographers list vm to notify parent that a new photographer has been selected.
     /// </summary>
     public class PhotographerEventArgs : EventArgs
     {

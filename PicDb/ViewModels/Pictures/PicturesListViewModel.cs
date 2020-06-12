@@ -1,6 +1,8 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.Linq;
+using System.Windows.Documents;
 using log4net;
 using PicDb.Business;
 using PicDb.Data;
@@ -13,30 +15,31 @@ namespace PicDb.ViewModels.Pictures
     {
         private static readonly ILog Log = LogManager.GetLogger(typeof(DALSqlite));
         private readonly BL _bl = new BL();
-        
+
         private List<Picture> _pictures;
         private Picture _selectedPicture;
         
         public event EventHandler<PictureEventArguments> OnPictureChanged;
         
-        public PicturesListViewModel()
+        public PicturesListViewModel(List<Picture> pictures)
         {
-            _pictures = _bl.GetPictures().ToList();
+            if (pictures != null) Pictures = new List<Picture>(pictures);
+            else Pictures = new List<Picture>(_bl.GetPictures().ToList());
         }
-        
+
         public List<Picture> Pictures
         {
             get => _pictures;
-            set =>  SetProperty(ref _pictures, value);
+            set => SetProperty(ref _pictures, value);
         }
-        
+
         public Picture SelectedPicture
         {
             get => _selectedPicture;
             set
             {
                 SetProperty(ref _selectedPicture, value);
-                OnPictureChanged?.Invoke(this, new PictureEventArguments(){Picture = value});
+                OnPictureChanged?.Invoke(this, new PictureEventArguments{Picture = value});
                 Log.Info("Selected Picture " + value.Filename);
             }
         }
