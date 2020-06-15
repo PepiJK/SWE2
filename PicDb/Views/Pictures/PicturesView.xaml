@@ -28,7 +28,7 @@
                     <ColumnDefinition Width="400" MinWidth="400" MaxWidth="600"></ColumnDefinition>
                 </Grid.ColumnDefinitions>
 
-                <pictures:PictureLargeView x:Name="PicturesLargeViewControl" Padding="10"/>
+                <pictures:PictureLargeView DataContext="{Binding PictureLargeViewModel}" Padding="10"/>
 
                 <GridSplitter Grid.Column="1" Width="5" HorizontalAlignment="Stretch"></GridSplitter>
 
@@ -37,7 +37,7 @@
                         <pictures:ExifView DataContext="{Binding ExifViewModel}"/>
                     </TabItem>
                     <TabItem Header="IPTC">
-                        <pictures:IptcView x:Name="IptcViewControl"/>
+                        <pictures:IptcView DataContext="{Binding IptcViewModel}"/>
                     </TabItem>
                 </TabControl>
 
