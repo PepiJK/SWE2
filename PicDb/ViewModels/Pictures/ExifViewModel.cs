@@ -75,7 +75,7 @@ namespace PicDb.ViewModels.Pictures
             _selectedPicture.Exif.Model = Model;
             _selectedPicture.Exif.FocalLength = FocalLength;
             _selectedPicture.Exif.DateTimeOriginal = DateTimeOriginal;
-            _bl.Save(_selectedPicture);
+            _bl.Update(_selectedPicture);
         }
 
 

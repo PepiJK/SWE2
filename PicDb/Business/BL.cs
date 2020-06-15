@@ -55,7 +55,7 @@ namespace PicDb.Business
             _dal.Save(photographer);
         }
 
-        public void Save(Picture picture)
+        public void Update(Picture picture)
         {
             if(picture == null) throw new NullReferenceException();
             _dal.Update(picture);

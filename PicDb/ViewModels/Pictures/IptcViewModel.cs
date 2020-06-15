@@ -1,4 +1,5 @@
-﻿using Accessibility;
+﻿using System.Windows.Input;
+using Accessibility;
 using PicDb.Business;
 using PicDb.Models;
 using PicDb.ViewModels.EventArguments;
@@ -8,17 +9,14 @@ namespace PicDb.ViewModels.Pictures
     public class IptcViewModel : ViewModelBase
     {
         private readonly BL _bl = new BL();
-        private int? _id;
         private string _caption;
         private string _keywords;
         private string _credit;
         private string _copyright;
+        private Picture _picture;
+        private readonly DelegateCommand _saveIptcCommand;
 
-        public int? Id
-        {
-            get => _id;
-            set => SetProperty(ref _id, value);
-        }
+        public ICommand SaveIptcCommand => _saveIptcCommand;
 
         public string Caption
         {
@@ -44,11 +42,25 @@ namespace PicDb.ViewModels.Pictures
             set => SetProperty(ref _copyright, value);
         }
 
+        public IptcViewModel()
+        {
+            _saveIptcCommand = new DelegateCommand(OnSaveIptc);    
+        }
+
+        private void OnSaveIptc(object commandParameter)
+        {
+            _picture.Iptc.Caption = Caption;
+            _picture.Iptc.Credit = Credit;
+            _picture.Iptc.Keywords = Keywords;
+            _picture.Iptc.Copyright = Copyright;
+            _bl.Update(_picture);
+        }
+        
         public void OnPictureChanged(Picture picture)
         {
+            _picture = picture;
             if (picture.Iptc != null)
             {
-                Id = picture.Iptc.Id;
                 Caption = picture.Iptc.Caption;
                 Keywords = picture.Iptc.Keywords;
                 Credit = picture.Iptc.Credit;
@@ -56,7 +68,6 @@ namespace PicDb.ViewModels.Pictures
             }
             else
             {
-                Id = null;
                 Caption = null;
                 Keywords = null;
                 Credit = null;

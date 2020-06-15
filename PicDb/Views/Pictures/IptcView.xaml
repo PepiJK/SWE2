@@ -17,29 +17,25 @@
             <RowDefinition Height="Auto" />
             <RowDefinition Height="Auto" />
             <RowDefinition Height="Auto" />
-            <RowDefinition Height="Auto" />
         </Grid.RowDefinitions>
         
-        <Label Grid.Row="0" Margin="0,0,0,10">Id: </Label>
-        <TextBlock Grid.Column="1" Margin="0,0,0,10" Text="{Binding Id, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"/>
-        
-        <Label Grid.Row="1" Margin="0,0,0,10">Caption: </Label>
-        <TextBox VerticalContentAlignment="Center" Grid.Row="1" Grid.Column="1" Margin="0,0,0,10"
+        <Label Grid.Row="0" Margin="0,0,0,10">Caption: </Label>
+        <TextBox VerticalContentAlignment="Center" Grid.Row="0" Grid.Column="1" Margin="0,0,0,10"
                  Text="{Binding Caption, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"/>
         
-        <Label VerticalContentAlignment="Center" Grid.Row="2" Margin="0,0,0,10">Keywords: </Label>
-        <TextBox VerticalContentAlignment="Center" Grid.Row="2" Grid.Column="1" Margin="0,0,0,10"
+        <Label VerticalContentAlignment="Center" Grid.Row="1" Margin="0,0,0,10">Keywords: </Label>
+        <TextBox VerticalContentAlignment="Center" Grid.Row="1" Grid.Column="1" Margin="0,0,0,10"
                  Text="{Binding Keywords, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"/>
         
-        <Label Grid.Row="3" Margin="0,0,0,10">Credit: </Label>
-        <TextBox VerticalContentAlignment="Center" Grid.Row="3" Grid.Column="1" Margin="0,0,0,10"
+        <Label Grid.Row="2" Margin="0,0,0,10">Credit: </Label>
+        <TextBox VerticalContentAlignment="Center" Grid.Row="2" Grid.Column="1" Margin="0,0,0,10"
                  Text="{Binding Credit, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"/>
         
-        <Label Grid.Row="4" Margin="0,0,0,10">Copyright: </Label>
-        <TextBox VerticalContentAlignment="Center" Grid.Row="4" Grid.Column="1" Margin="0,0,0,10"
+        <Label Grid.Row="3" Margin="0,0,0,10">Copyright: </Label>
+        <TextBox VerticalContentAlignment="Center" Grid.Row="3" Grid.Column="1" Margin="0,0,0,10"
                  Text="{Binding Copyright, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"/>
         
-        <Button Grid.Row="5" Grid.Column="1" Padding="10,5,10,5" HorizontalAlignment="Right">Save</Button>
+        <Button Grid.Row="5" Grid.Column="1" Padding="10,5,10,5" HorizontalAlignment="Right" Command="{Binding SaveIptcCommand}">Save</Button>
     </Grid>
     
 </UserControl>
