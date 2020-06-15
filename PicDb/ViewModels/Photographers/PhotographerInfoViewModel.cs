@@ -127,31 +127,43 @@ namespace PicDb.ViewModels.Photographers
         /// <param name="photographer"></param>
         public void PhotographerChanged(Photographer photographer)
         {
-            SelectedPhotographer = photographer;
-            Firstname = photographer.Firstname;
-            Lastname = photographer.Lastname;
-            Birthdate = photographer.Birthdate;
-            Notes = photographer.Notes;
-            PhotographerSelected = true;
-            PhotographerNotSelected = false;
+            if (photographer != null)
+            {
+                SelectedPhotographer = photographer;
+                Firstname = photographer.Firstname;
+                Lastname = photographer.Lastname;
+                Birthdate = photographer.Birthdate;
+                Notes = photographer.Notes;
+                PhotographerSelected = true;
+                PhotographerNotSelected = false;
+            }
+            else
+            {
+                PhotographerSelected = false;
+                PhotographerNotSelected = true;
+            }
+           
         }
         
         private void OnSavePhotographer(object commandParameter)
         {
-            _bl.UpdatePhotographer(new Photographer
+            var newPhotographer = new Photographer
             {
                 Id = SelectedPhotographer.Id,
                 Firstname = Firstname,
                 Lastname = Lastname,
                 Birthdate = Birthdate,
                 Notes = Notes
-            });
+            };
+            _bl.Update(newPhotographer);
             OnPhotographerUpdated?.Invoke(this, new EventArgs());
+            SelectedPhotographer = newPhotographer;
             _savePhotographerCommand.InvokeCanExecuteChanged();
         }
 
         private bool CanSavePhotographer(object commandParameter)
         {
+            if (SelectedPhotographer == null) return false;
             if (Birthdate.HasValue && Birthdate > DateTime.Now) return false;
             if (string.IsNullOrWhiteSpace(Firstname)) return false;
             if (string.IsNullOrWhiteSpace(Lastname)) return false;

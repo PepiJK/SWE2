@@ -46,8 +46,8 @@ namespace PicDb.Data
             CreateTable("exif", @"
                 CREATE TABLE exif(
                     id INTEGER PRIMARY KEY,
+                    manufacturer TEXT,
                     model TEXT,
-                    lens TEXT,
                     focal_length INTEGER,
                     datetime_original DATETIME
                 )"
@@ -284,9 +284,9 @@ namespace PicDb.Data
             if (picture.Exif != null)
             {
                 command.CommandText =
-                    "INSERT INTO exif (model, lens, focal_length, datetime_original) VALUES (@model, @lens, @focal_length, @datetime_original)";
+                    "INSERT INTO exif (manufacturer, model, focal_length, datetime_original) VALUES (@manufacturer, @model, @focal_length, @datetime_original)";
+                command.Parameters.AddWithValue("manufacturer", picture.Exif.Manufacturer);
                 command.Parameters.AddWithValue("model", picture.Exif.Model);
-                command.Parameters.AddWithValue("lens", picture.Exif.Lens);
                 command.Parameters.AddWithValue("focal_length", picture.Exif.FocalLength);
                 command.Parameters.AddWithValue("datetime_original", picture.Exif.DateTimeOriginal);
                 command.ExecuteNonQuery();
@@ -346,9 +346,9 @@ namespace PicDb.Data
             {
                 command = connection.CreateCommand();
                 command.CommandText =
-                    "UPDATE exif SET model=@model, lens=@lens, focal_length=@focal_length, datetime_original=@datetime_original WHERE id=@id";
+                    "UPDATE exif SET manufacturer=@manufacturer, model=@model, focal_length=@focal_length, datetime_original=@datetime_original WHERE id=@id";
+                command.Parameters.AddWithValue("manufacturer", picture.Exif.Manufacturer);
                 command.Parameters.AddWithValue("model", picture.Exif.Model);
-                command.Parameters.AddWithValue("lens", picture.Exif.Lens);
                 command.Parameters.AddWithValue("focal_length", picture.Exif.FocalLength);
                 command.Parameters.AddWithValue("datetime_original", picture.Exif.DateTimeOriginal);
                 command.Parameters.AddWithValue("id", picture.Exif.Id);
@@ -430,7 +430,7 @@ namespace PicDb.Data
             connection.Open();
 
             var command = connection.CreateCommand();
-            command.CommandText = "SELECT id, model, lens, focal_length, datetime_original FROM exif WHERE id=@id";
+            command.CommandText = "SELECT id, manufacturer, model, focal_length, datetime_original FROM exif WHERE id=@id";
             command.Parameters.AddWithValue("id", id);
 
             Exif exif = null;
@@ -441,8 +441,8 @@ namespace PicDb.Data
                     exif = new Exif
                     {
                         Id = reader.GetInt32(0),
-                        Model = reader.IsDBNull(1) ? null : reader.GetString(1),
-                        Lens = reader.IsDBNull(2) ? null : reader.GetString(2),
+                        Manufacturer = reader.IsDBNull(2) ? null : reader.GetString(2),
+                        Model = reader.IsDBNull(1) ? null : reader.GetString(1)
                     };
                     if (!reader.IsDBNull(3)) exif.FocalLength = reader.GetInt32(3);
                     if (!reader.IsDBNull(4)) exif.DateTimeOriginal = reader.GetDateTime(4);

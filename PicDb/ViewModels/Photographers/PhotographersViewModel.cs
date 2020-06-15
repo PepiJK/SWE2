@@ -10,7 +10,7 @@ namespace PicDb.ViewModels.Photographers
     /// </summary>
     public class PhotographersViewModel : ViewModelBase
     {
-        private static readonly ILog Log = LogManager.GetLogger(typeof(DALSqlite));
+        private static readonly ILog Log = LogManager.GetLogger(typeof(PhotographersViewModel));
         
         /// <summary>
         /// VM for the photographer list.

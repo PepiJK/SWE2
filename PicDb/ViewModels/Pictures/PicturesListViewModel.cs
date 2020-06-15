@@ -13,7 +13,7 @@ namespace PicDb.ViewModels.Pictures
 {
     public class PicturesListViewModel : ViewModelBase
     {
-        private static readonly ILog Log = LogManager.GetLogger(typeof(DALSqlite));
+        private static readonly ILog Log = LogManager.GetLogger(typeof(PicturesListViewModel));
         private readonly BL _bl = new BL();
         private List<Picture> _pictures;
         private Picture _selectedPicture;

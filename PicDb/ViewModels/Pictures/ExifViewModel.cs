@@ -55,7 +55,7 @@ namespace PicDb.ViewModels.Pictures
             if (picture?.Exif != null)
             {
                 Model = picture.Exif.Model;
-                Lens = picture.Exif.Lens;
+                Lens = picture.Exif.Manufacturer;
                 FocalLength = picture.Exif.FocalLength;
                 DateTimeOriginal = picture.Exif.DateTimeOriginal;
             }
@@ -70,8 +70,7 @@ namespace PicDb.ViewModels.Pictures
 
         private void OnSaveExif(object commandParameter)
         {
-            if(_selectedPicture == null) throw new NullReferenceException();
-            _selectedPicture.Exif.Lens = Lens;
+            _selectedPicture.Exif.Manufacturer = Lens;
             _selectedPicture.Exif.Model = Model;
             _selectedPicture.Exif.FocalLength = FocalLength;
             _selectedPicture.Exif.DateTimeOriginal = DateTimeOriginal;

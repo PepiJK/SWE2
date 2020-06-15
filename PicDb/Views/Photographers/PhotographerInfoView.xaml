@@ -32,7 +32,7 @@
 
             <Label Grid.Row="0" Margin="0,0,0,10">Firstname: </Label>
             <TextBox VerticalContentAlignment="Center" Grid.Row="0" Grid.Column="1" Margin="0,0,0,10"
-                     Text="{Binding Path=Firstname, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" />
+                     Text="{Binding Firstname, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" />
 
             <Label Grid.Row="1" Grid.Column="0" Margin="0,0,0,10">Lastname: </Label>
             <TextBox VerticalContentAlignment="Center" Grid.Row="1" Grid.Column="1" Margin="0,0,0,10"
