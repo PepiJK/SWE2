@@ -11,7 +11,6 @@ namespace PicDb.Views.Pictures
         public IptcView()
         {
             InitializeComponent();
-            DataContext = new IptcViewModel();
         }
     }
 }

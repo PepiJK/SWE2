@@ -11,7 +11,6 @@ namespace PicDb.Views.Pictures
         public PictureLargeView()
         {
             InitializeComponent();
-            DataContext = new PictureLargeViewModel();
         }
     }
 }
