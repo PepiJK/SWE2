@@ -14,7 +14,7 @@
         <TextBlock Visibility="{Binding PhotographerNotSelected, Converter={StaticResource BoolToVisibilityConverter}}">
             No Photographer selected
         </TextBlock>
-        
+
         <Grid Margin="5"
               Visibility="{Binding PhotographerSelected, Converter={StaticResource BoolToVisibilityConverter}}">
             <Grid.ColumnDefinitions>
@@ -32,7 +32,7 @@
 
             <Label Grid.Row="0" Margin="0,0,0,10">Firstname: </Label>
             <TextBox VerticalContentAlignment="Center" Grid.Row="0" Grid.Column="1" Margin="0,0,0,10"
-                     Text="{Binding Path=Firstname, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"/>
+                     Text="{Binding Path=Firstname, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" />
 
             <Label Grid.Row="1" Grid.Column="0" Margin="0,0,0,10">Lastname: </Label>
             <TextBox VerticalContentAlignment="Center" Grid.Row="1" Grid.Column="1" Margin="0,0,0,10"
@@ -44,7 +44,8 @@
 
             <Label Grid.Row="3" Grid.Column="0" Margin="0,0,0,10">Notes: </Label>
             <TextBox TextWrapping="Wrap" AcceptsReturn="True" VerticalContentAlignment="Center" Grid.Row="3"
-                     Grid.Column="1" Margin="0,0,0,10" Text="{Binding Notes, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" />
+                     Grid.Column="1" Margin="0,0,0,10"
+                     Text="{Binding Notes, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" />
 
             <Button Grid.Row="5" Grid.Column="1" Padding="10,5,10,5" HorizontalAlignment="Right"
                     Command="{Binding SavePhotographerCommand}">

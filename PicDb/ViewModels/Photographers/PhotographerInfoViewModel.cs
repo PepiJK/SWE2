@@ -52,7 +52,7 @@ namespace PicDb.ViewModels.Photographers
             set
             {
                 SetProperty(ref _firstname, value);
-                _savePhotographerCommand. InvokeCanExecuteChanged();
+                _savePhotographerCommand.InvokeCanExecuteChanged();
             }
         }
         
@@ -65,7 +65,7 @@ namespace PicDb.ViewModels.Photographers
             set
             {
                 SetProperty(ref _lastname, value);
-                _savePhotographerCommand. InvokeCanExecuteChanged();
+                _savePhotographerCommand.InvokeCanExecuteChanged();
             }
         }
         
@@ -78,7 +78,7 @@ namespace PicDb.ViewModels.Photographers
             set
             {
                 SetProperty(ref _birthdate, value);
-                _savePhotographerCommand. InvokeCanExecuteChanged();
+                _savePhotographerCommand.InvokeCanExecuteChanged();
             }
         }
         
@@ -91,7 +91,7 @@ namespace PicDb.ViewModels.Photographers
             set
             {
                 SetProperty(ref _notes, value);
-                _savePhotographerCommand. InvokeCanExecuteChanged();
+                _savePhotographerCommand.InvokeCanExecuteChanged();
             }
         }
         

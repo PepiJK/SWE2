@@ -19,21 +19,18 @@
             <RowDefinition Height="Auto" />
         </Grid.RowDefinitions>
         
-        <Label Grid.Row="0" Margin="0,0,0,10">Id: </Label>
-        <TextBox VerticalContentAlignment="Center" Grid.Column="1" Margin="0,0,0,10" />
+        <Label Grid.Row="0" Grid.Column="0" Margin="0,0,0,10">Model: </Label>
+        <TextBox VerticalContentAlignment="Center" Grid.Row="0" Grid.Column="1" Margin="0,0,0,10" Text="{Binding Model}"/>
         
-        <Label Grid.Row="1" Margin="0,0,0,10">Model: </Label>
-        <TextBox VerticalContentAlignment="Center" Grid.Row="1" Grid.Column="1" Margin="0,0,0,10" />
+        <Label VerticalContentAlignment="Center" Grid.Row="1" Grid.Column="0" Margin="0,0,0,10">Lens: </Label>
+        <TextBox VerticalContentAlignment="Center" Grid.Row="1" Grid.Column="1" Margin="0,0,0,10" Text="{Binding Lens}"/>
         
-        <Label VerticalContentAlignment="Center" Grid.Row="2" Margin="0,0,0,10">Lens: </Label>
-        <TextBox VerticalContentAlignment="Center" Grid.Row="2" Grid.Column="1" Margin="0,0,0,10" />
+        <Label Grid.Row="2" Grid.Column="0" Margin="0,0,0,10">Focal Length: </Label>
+        <TextBox VerticalContentAlignment="Center" Grid.Row="2" Grid.Column="1" Margin="0,0,0,10" Text="{Binding FocalLength}" />
         
-        <Label Grid.Row="3" Margin="0,0,0,10">Focal Length: </Label>
-        <TextBox VerticalContentAlignment="Center" Grid.Row="3" Grid.Column="1" Margin="0,0,0,10" />
+        <Label Grid.Row="3" Grid.Column="0" Margin="0,0,0,10">Date Time Original: </Label>
+        <DatePicker VerticalContentAlignment="Center" Grid.Row="3" Grid.Column="1" Margin="0,0,0,10" SelectedDate="{Binding DateTimeOriginal}"/>
         
-        <Label Grid.Row="4" Margin="0,0,0,10">Date: </Label>
-        <TextBox VerticalContentAlignment="Center" Grid.Row="4" Grid.Column="1" Margin="0,0,0,10" />
-        
-        <Button Grid.Row="5" Grid.Column="1" Padding="10,5,10,5" HorizontalAlignment="Right">Save</Button>
+        <Button Grid.Row="4" Grid.Column="1" Padding="10,5,10,5" HorizontalAlignment="Right" Command="{Binding SaveExifCommand}">Save</Button>
     </Grid>
 </UserControl>

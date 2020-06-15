@@ -227,7 +227,7 @@ namespace PicDb.Data
             command.CommandText = "SELECT count(id) FROM picture WHERE directory=@directory AND filename=@filename";
             command.Parameters.AddWithValue("directory", picture.Directory);
             command.Parameters.AddWithValue("filename", picture.Filename);
-            
+
             var exists = false;
             using (var reader = command.ExecuteReader())
             {
@@ -246,7 +246,8 @@ namespace PicDb.Data
             connection.Open();
 
             var command = connection.CreateCommand();
-            command.CommandText = "INSERT INTO photographer (first_name, last_name, birthdate, notes) VALUES (@firstname, @lastname, @birthdate, @notes)";
+            command.CommandText =
+                "INSERT INTO photographer (first_name, last_name, birthdate, notes) VALUES (@firstname, @lastname, @birthdate, @notes)";
             command.Parameters.AddWithValue("firstname", photographer.Firstname);
             command.Parameters.AddWithValue("lastname", photographer.Lastname);
             command.Parameters.AddWithValue("birthdate", photographer.Birthdate);
@@ -267,7 +268,8 @@ namespace PicDb.Data
 
             if (picture.Iptc != null)
             {
-                command.CommandText = "INSERT INTO iptc (caption, keywords, credit, copyright) VALUES (@caption, @keywords, @credit, @copyright)";
+                command.CommandText =
+                    "INSERT INTO iptc (caption, keywords, credit, copyright) VALUES (@caption, @keywords, @credit, @copyright)";
                 command.Parameters.AddWithValue("caption", picture.Iptc.Caption);
                 command.Parameters.AddWithValue("keywords", picture.Iptc.Keywords);
                 command.Parameters.AddWithValue("credit", picture.Iptc.Credit);
@@ -281,7 +283,8 @@ namespace PicDb.Data
 
             if (picture.Exif != null)
             {
-                command.CommandText = "INSERT INTO exif (model, lens, focal_length, datetime_original) VALUES (@model, @lens, @focal_length, @datetime_original)";
+                command.CommandText =
+                    "INSERT INTO exif (model, lens, focal_length, datetime_original) VALUES (@model, @lens, @focal_length, @datetime_original)";
                 command.Parameters.AddWithValue("model", picture.Exif.Model);
                 command.Parameters.AddWithValue("lens", picture.Exif.Lens);
                 command.Parameters.AddWithValue("focal_length", picture.Exif.FocalLength);
@@ -293,7 +296,8 @@ namespace PicDb.Data
                 exifId = Convert.ToInt32(command.ExecuteScalar());
             }
 
-            command.CommandText = "INSERT INTO picture (directory ,filename, iptc_id, exif_id, photographer_id) VALUES (@directory, @filename, @iptc_id, @exif_id, @photographer_id)";
+            command.CommandText =
+                "INSERT INTO picture (directory ,filename, iptc_id, exif_id, photographer_id) VALUES (@directory, @filename, @iptc_id, @exif_id, @photographer_id)";
             command.Parameters.AddWithValue("directory", picture.Directory);
             command.Parameters.AddWithValue("filename", picture.Filename);
             command.Parameters.AddWithValue("iptc_id", iptcId);
@@ -310,7 +314,8 @@ namespace PicDb.Data
             connection.Open();
 
             var command = connection.CreateCommand();
-            command.CommandText = "UPDATE photographer SET first_name=@firstname, last_name=@lastname, birthdate=@birthdate, notes=@notes WHERE id=@id";
+            command.CommandText =
+                "UPDATE photographer SET first_name=@firstname, last_name=@lastname, birthdate=@birthdate, notes=@notes WHERE id=@id";
             command.Parameters.AddWithValue("firstname", photographer.Firstname);
             command.Parameters.AddWithValue("lastname", photographer.Lastname);
             command.Parameters.AddWithValue("birthdate", photographer.Birthdate);
@@ -323,7 +328,47 @@ namespace PicDb.Data
 
         public void Update(Picture picture)
         {
-            throw new NotImplementedException();
+            using var connection = new SQLiteConnection(_connectionString);
+            connection.Open();
+            
+            var command = connection.CreateCommand();
+            command.CommandText =
+                "UPDATE picture SET directory=@directory, filename=@filename, iptc_id=@iptc_id, exif_id=@exif_id, photographer_id=@photographer_id WHERE id=@id";
+            command.Parameters.AddWithValue("directory", picture.Directory);
+            command.Parameters.AddWithValue("filename", picture.Filename);
+            command.Parameters.AddWithValue("iptc_id", picture.IptcId);
+            command.Parameters.AddWithValue("exif_id", picture.ExifId);
+            command.Parameters.AddWithValue("photographer_id", picture.PhotographerId);
+            command.Parameters.AddWithValue("id", picture.Id);
+            command.ExecuteNonQuery();
+
+            if (picture.Exif != null)
+            {
+                command = connection.CreateCommand();
+                command.CommandText =
+                    "UPDATE exif SET model=@model, lens=@lens, focal_length=@focal_length, datetime_original=@datetime_original WHERE id=@id";
+                command.Parameters.AddWithValue("model", picture.Exif.Model);
+                command.Parameters.AddWithValue("lens", picture.Exif.Lens);
+                command.Parameters.AddWithValue("focal_length", picture.Exif.FocalLength);
+                command.Parameters.AddWithValue("datetime_original", picture.Exif.DateTimeOriginal);
+                command.Parameters.AddWithValue("id", picture.Exif.Id);
+                command.ExecuteNonQuery();
+            }
+
+            if (picture.Iptc != null)
+            {
+                command = connection.CreateCommand();
+                command.CommandText =
+                    "UPDATE iptc SET caption=@caption, keywords=@keywords, credit=@credit, copyright=@copyright WHERE id=@id";
+                command.Parameters.AddWithValue("caption", picture.Iptc.Caption);
+                command.Parameters.AddWithValue("keywords", picture.Iptc.Keywords);
+                command.Parameters.AddWithValue("credit", picture.Iptc.Credit);
+                command.Parameters.AddWithValue("copyright", picture.Iptc.Copyright);
+                command.Parameters.AddWithValue("id", picture.Iptc.Id);
+                command.ExecuteNonQuery();
+            }
+            
+            Log.Info("Updated Picture " + picture.Filename);
         }
 
         private void CreateTable(string table, string createTableCommand)

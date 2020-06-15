@@ -15,7 +15,6 @@ namespace PicDb.ViewModels.Pictures
     {
         private static readonly ILog Log = LogManager.GetLogger(typeof(DALSqlite));
         private readonly BL _bl = new BL();
-
         private List<Picture> _pictures;
         private Picture _selectedPicture;
         

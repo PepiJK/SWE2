@@ -1,6 +1,6 @@
 ﻿namespace PicDb.ViewModels.Pictures
 {
-    class PictureLargeViewModel : ViewModelBase
+    public class PictureLargeViewModel : ViewModelBase
     {
     }
 }

@@ -34,7 +34,7 @@
 
                 <TabControl Grid.Column="2" Padding="0, 20, 0, 20">
                     <TabItem Header="EXIF">
-                        <pictures:ExifView x:Name="ExifViewControl"/>
+                        <pictures:ExifView DataContext="{Binding ExifViewModel}"/>
                     </TabItem>
                     <TabItem Header="IPTC">
                         <pictures:IptcView x:Name="IptcViewControl"/>

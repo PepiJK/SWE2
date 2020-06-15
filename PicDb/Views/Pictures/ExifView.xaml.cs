@@ -11,7 +11,6 @@ namespace PicDb.Views.Pictures
         public ExifView()
         {
             InitializeComponent();
-            DataContext = new ExifViewModel();
         }
     }
 }

@@ -17,7 +17,7 @@ namespace PicDb.ViewModels
 {
     class MainWindowViewModel : ViewModelBase
     {
-        private static readonly ILog Log = LogManager.GetLogger(typeof(DALSqlite));
+        private static readonly ILog Log = LogManager.GetLogger(typeof(MainWindowViewModel));
         private readonly BL _bl = new BL();
         private readonly DelegateCommand _openDirectoryCommand;
         private readonly DelegateCommand _showPicturesViewCommand;

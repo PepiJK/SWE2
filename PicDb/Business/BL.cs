@@ -24,7 +24,6 @@ namespace PicDb.Business
 
         public IEnumerable<Picture> SavePicturesFromDir(IEnumerable<string> dirs)
         {
-            //TODO: Check if picture already exists in db (compare with FullPath)
             var pictures = new List<Picture>();
             foreach (var dir in dirs)
             {
@@ -54,6 +53,12 @@ namespace PicDb.Business
         {
             CheckPhotographerValidity(photographer);
             _dal.Save(photographer);
+        }
+
+        public void Save(Picture picture)
+        {
+            if(picture == null) throw new NullReferenceException();
+            _dal.Update(picture);
         }
 
         public void UpdatePhotographer(Photographer photographer)
