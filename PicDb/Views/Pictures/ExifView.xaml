@@ -20,7 +20,7 @@
         </Grid.RowDefinitions>
         
         <Label Grid.Row="0" Margin="0,0,0,10">Id: </Label>
-        <TextBox VerticalContentAlignment="Center" Grid.Column="1" Margin="0,0,0,10" />
+        <TextBlock Grid.Column="1" Margin="0,0,0,10" />
         
         <Label Grid.Row="1" Margin="0,0,0,10">Model: </Label>
         <TextBox VerticalContentAlignment="Center" Grid.Row="1" Grid.Column="1" Margin="0,0,0,10" />

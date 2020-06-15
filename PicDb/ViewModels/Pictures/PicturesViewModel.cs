@@ -10,15 +10,23 @@ namespace PicDb.ViewModels.Pictures
     public class PicturesViewModel : ViewModelBase
     {
         public PicturesListViewModel PicturesListViewModel { get; }
+        public PictureLargeViewModel PictureLargeViewModel { get; }
         
+        public IptcViewModel IptcViewModel { get; }
+
         public PicturesViewModel(List<Picture> pictures = null)
         {
+            PictureLargeViewModel = new PictureLargeViewModel();
+            IptcViewModel = new IptcViewModel();
+
             PicturesListViewModel = new PicturesListViewModel(pictures);
             PicturesListViewModel.OnPictureChanged += OnPictureChanged;
         }
-        
+
         private void OnPictureChanged(object sender, PictureEventArguments args)
         {
+            PictureLargeViewModel?.OnPictureChanged(args.Picture);
+            IptcViewModel?.OnPictureChanged(args.Picture);
         }
     }
 }
