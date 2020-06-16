@@ -6,6 +6,7 @@
              mc:Ignorable="d"
              d:DesignHeight="300" d:DesignWidth="300">
     <Grid>
-        <ComboBox ItemsSource="{Binding Photographers}" DisplayMemberPath="FullName" SelectedItem="{Binding SelectedPhotographer}"/>
+        <ComboBox ItemsSource="{Binding Photographers}" DisplayMemberPath="FullName" SelectedValuePath="Id" 
+                  SelectedValue="{Binding SelectedPhotographer.Id}" SelectedItem="{Binding SelectedPhotographer}"/>
     </Grid>
 </UserControl>

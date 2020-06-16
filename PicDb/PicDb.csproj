@@ -1,126 +1,125 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk.WindowsDesktop">
 
-  <PropertyGroup>
-    <OutputType>WinExe</OutputType>
-    <TargetFramework>netcoreapp3.1</TargetFramework>
-    <UseWPF>true</UseWPF>
-    <UseWindowsForms>true</UseWindowsForms>
-  </PropertyGroup>
+    <PropertyGroup>
+        <OutputType>WinExe</OutputType>
+        <TargetFramework>netcoreapp3.1</TargetFramework>
+        <UseWPF>true</UseWPF>
+        <UseWindowsForms>true</UseWindowsForms>
+    </PropertyGroup>
 
-  <ItemGroup>
-    <None Remove="App.config" />
-    <None Remove="log4net.config" />
-  </ItemGroup>
+    <ItemGroup>
+        <None Remove="App.config"/>
+        <None Remove="log4net.config"/>
+    </ItemGroup>
 
-  <ItemGroup>
-    <Resource Include="Assets\account_box.png">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </Resource>
-    <Resource Include="Assets\camera.png">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </Resource>
-    <Resource Include="Assets\camera_alt.png">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </Resource>
-  </ItemGroup>
+    <ItemGroup>
+        <Resource Include="Assets\account_box.png">
+            <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+        </Resource>
+        <Resource Include="Assets\camera.png">
+            <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+        </Resource>
+        <Resource Include="Assets\camera_alt.png">
+            <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+        </Resource>
+    </ItemGroup>
 
-  <ItemGroup>
-    <PackageReference Include="log4net" Version="2.0.8" />
-    <PackageReference Include="Microsoft.Data.Sqlite.Core" Version="3.1.4" />
-    <PackageReference Include="System.Data.SQLite.Core" Version="1.0.112.2" />
-  </ItemGroup>
+    <ItemGroup>
+        <PackageReference Include="log4net" Version="2.0.8"/>
+        <PackageReference Include="System.Data.SQLite.Core" Version="1.0.112.2"/>
+    </ItemGroup>
 
-  <ItemGroup>
-    <Content Include="App.config">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </Content>
-    <Content Include="log4net.config">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </Content>
-  </ItemGroup>
+    <ItemGroup>
+        <Content Include="App.config">
+            <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+        </Content>
+        <Content Include="log4net.config">
+            <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+        </Content>
+    </ItemGroup>
 
-  <ItemGroup>
-    <Page Update="Views\Pictures\ExifView.xaml">
-      <Generator>MSBuild:Compile</Generator>
-      <SubType>Designer</SubType>
-    </Page>
-    <Page Update="Views\Pictures\IptcView.xaml">
-      <Generator>MSBuild:Compile</Generator>
-      <SubType>Designer</SubType>
-    </Page>
-    <Page Update="Views\Pictures\PictureLargeView.xaml">
-      <Generator>MSBuild:Compile</Generator>
-      <SubType>Designer</SubType>
-    </Page>
-    <Page Update="Views\Pictures\PicturesListView.xaml">
-      <Generator>MSBuild:Compile</Generator>
-      <SubType>Designer</SubType>
-    </Page>
-    <Page Update="Views\Pictures\PicturesView.xaml">
-      <Generator>MSBuild:Compile</Generator>
-      <SubType>Designer</SubType>
-    </Page>
-    <Page Update="Views\Pictures\SearchView.xaml">
-      <Generator>MSBuild:Compile</Generator>
-      <SubType>Designer</SubType>
-    </Page>
-    <Page Update="Views\Photographers\PhotographerInfoView.xaml">
-      <Generator></Generator>
-    </Page>
-    <Page Update="Views\Photographers\PhotographerListView.xaml">
-      <Generator></Generator>
-    </Page>
-    <Page Update="Views\Photographers\PhotographersView.xaml">
-      <Generator>MSBuild:Compile</Generator>
-      <SubType>Designer</SubType>
-    </Page>
-    <Page Update="MainWindow.xaml">
-      <Generator>MSBuild:Compile</Generator>
-      <SubType>Designer</SubType>
-    </Page>
-    <Page Update="Views\Pictures\PicturePhotographerView.xaml">
-      <Generator></Generator>
-    </Page>
-  </ItemGroup>
+    <ItemGroup>
+        <Page Update="Views\Pictures\ExifView.xaml">
+            <Generator>MSBuild:Compile</Generator>
+            <SubType>Designer</SubType>
+        </Page>
+        <Page Update="Views\Pictures\IptcView.xaml">
+            <Generator>MSBuild:Compile</Generator>
+            <SubType>Designer</SubType>
+        </Page>
+        <Page Update="Views\Pictures\PictureLargeView.xaml">
+            <Generator>MSBuild:Compile</Generator>
+            <SubType>Designer</SubType>
+        </Page>
+        <Page Update="Views\Pictures\PicturesListView.xaml">
+            <Generator>MSBuild:Compile</Generator>
+            <SubType>Designer</SubType>
+        </Page>
+        <Page Update="Views\Pictures\PicturesView.xaml">
+            <Generator>MSBuild:Compile</Generator>
+            <SubType>Designer</SubType>
+        </Page>
+        <Page Update="Views\Pictures\SearchView.xaml">
+            <Generator>MSBuild:Compile</Generator>
+            <SubType>Designer</SubType>
+        </Page>
+        <Page Update="Views\Photographers\PhotographerInfoView.xaml">
+            <Generator></Generator>
+        </Page>
+        <Page Update="Views\Photographers\PhotographerListView.xaml">
+            <Generator></Generator>
+        </Page>
+        <Page Update="Views\Photographers\PhotographersView.xaml">
+            <Generator>MSBuild:Compile</Generator>
+            <SubType>Designer</SubType>
+        </Page>
+        <Page Update="MainWindow.xaml">
+            <Generator>MSBuild:Compile</Generator>
+            <SubType>Designer</SubType>
+        </Page>
+        <Page Update="Views\Pictures\PicturePhotographerView.xaml">
+            <Generator></Generator>
+        </Page>
+    </ItemGroup>
 
-  <ItemGroup>
-    <Compile Update="Views\Pictures\ExifView.xaml.cs">
-      <SubType>Code</SubType>
-    </Compile>
-    <Compile Update="Views\Pictures\IptcView.xaml.cs">
-      <SubType>Code</SubType>
-    </Compile>
-    <Compile Update="Views\Pictures\PictureLargeView.xaml.cs">
-      <SubType>Code</SubType>
-    </Compile>
-    <Compile Update="Views\Pictures\PicturesListView.xaml.cs">
-      <SubType>Code</SubType>
-    </Compile>
-    <Compile Update="Views\Pictures\PicturesView.xaml.cs">
-      <SubType>Code</SubType>
-    </Compile>
-    <Compile Update="Views\Pictures\SearchView.xaml.cs">
-      <SubType>Code</SubType>
-    </Compile>
-    <Compile Update="Views\Photographers\PhotographerInfoView.xaml.cs">
-      <DependentUpon>PhotographerInfoView.xaml</DependentUpon>
-    </Compile>
-    <Compile Update="Views\Photographers\PhotographerListView.xaml.cs">
-      <DependentUpon>PhotographerListView.xaml</DependentUpon>
-    </Compile>
-    <Compile Update="Views\Photographers\PhotographersView.xaml.cs">
-      <SubType>Code</SubType>
-    </Compile>
-    <None Remove="Assets\camera_new.png" />
-    <Resource Include="Assets\camera_new.png">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </Resource>
-    <Compile Update="Views\Pictures\PicturePhotographer.xaml.cs">
-      <DependentUpon>PicturePhotographer.xaml</DependentUpon>
-    </Compile>
-    <Compile Update="Views\Pictures\PicturePhotographerView.xaml.cs">
-      <DependentUpon>PicturePhotographerView.xaml</DependentUpon>
-    </Compile>
-  </ItemGroup>
+    <ItemGroup>
+        <Compile Update="Views\Pictures\ExifView.xaml.cs">
+            <SubType>Code</SubType>
+        </Compile>
+        <Compile Update="Views\Pictures\IptcView.xaml.cs">
+            <SubType>Code</SubType>
+        </Compile>
+        <Compile Update="Views\Pictures\PictureLargeView.xaml.cs">
+            <SubType>Code</SubType>
+        </Compile>
+        <Compile Update="Views\Pictures\PicturesListView.xaml.cs">
+            <SubType>Code</SubType>
+        </Compile>
+        <Compile Update="Views\Pictures\PicturesView.xaml.cs">
+            <SubType>Code</SubType>
+        </Compile>
+        <Compile Update="Views\Pictures\SearchView.xaml.cs">
+            <SubType>Code</SubType>
+        </Compile>
+        <Compile Update="Views\Photographers\PhotographerInfoView.xaml.cs">
+            <DependentUpon>PhotographerInfoView.xaml</DependentUpon>
+        </Compile>
+        <Compile Update="Views\Photographers\PhotographerListView.xaml.cs">
+            <DependentUpon>PhotographerListView.xaml</DependentUpon>
+        </Compile>
+        <Compile Update="Views\Photographers\PhotographersView.xaml.cs">
+            <SubType>Code</SubType>
+        </Compile>
+        <None Remove="Assets\camera_new.png"/>
+        <Resource Include="Assets\camera_new.png">
+            <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+        </Resource>
+        <Compile Update="Views\Pictures\PicturePhotographer.xaml.cs">
+            <DependentUpon>PicturePhotographer.xaml</DependentUpon>
+        </Compile>
+        <Compile Update="Views\Pictures\PicturePhotographerView.xaml.cs">
+            <DependentUpon>PicturePhotographerView.xaml</DependentUpon>
+        </Compile>
+    </ItemGroup>
 
 </Project>

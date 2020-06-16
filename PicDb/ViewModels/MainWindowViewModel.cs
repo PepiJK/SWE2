@@ -57,6 +57,7 @@ namespace PicDb.ViewModels
         {
             PicturesViewModel = new PicturesViewModel();
             PhotographersViewModel = new PhotographersViewModel();
+            PhotographersViewModel.PhotographersUpdated += OnPhotographersUpdated;
             PicturesToggleIsChecked = true;
             PhotographersToggleIsChecked = false;
             _openDirectoryCommand = new DelegateCommand(OnOpenDirectory);
@@ -90,6 +91,11 @@ namespace PicDb.ViewModels
         {
             PhotographersToggleIsChecked = false;
             PicturesToggleIsChecked = true;
+        }
+
+        private void OnPhotographersUpdated(object sender, EventArgs args)
+        {
+            PicturesViewModel.UpdatePhotographers();
         }
     }
 }

@@ -158,6 +158,7 @@ namespace PicDb.ViewModels.Photographers
             _bl.Update(newPhotographer);
             OnPhotographerUpdated?.Invoke(this, new EventArgs());
             SelectedPhotographer = newPhotographer;
+            PhotographerChanged(newPhotographer);
             _savePhotographerCommand.InvokeCanExecuteChanged();
         }
 

@@ -12,6 +12,8 @@ namespace PicDb.ViewModels.Photographers
     {
         private static readonly ILog Log = LogManager.GetLogger(typeof(PhotographersViewModel));
         
+        public event EventHandler PhotographersUpdated;
+        
         /// <summary>
         /// VM for the photographer list.
         /// </summary>
@@ -35,11 +37,13 @@ namespace PicDb.ViewModels.Photographers
 
         private void OnPhotographerChanged(object sender, PhotographerEventArgs args)
         {
+            PhotographersUpdated?.Invoke(this, new EventArgs());
             PhotographerInfoViewModel?.PhotographerChanged(args.Photographer);
         }
 
         private void OnPhotographerUpdated(object sender, EventArgs args)
         {
+            PhotographersUpdated?.Invoke(this, new EventArgs());
             PhotographerListViewModel?.UpdatePhotographersList();
         }
     }
