@@ -3,14 +3,17 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
-             xmlns:views="clr-namespace:PicDb.Views"
              xmlns:pictures="clr-namespace:PicDb.Views.Pictures"
              mc:Ignorable="d" 
              d:DesignHeight="450" d:DesignWidth="800">
+    
+    <UserControl.Resources>
+        <BooleanToVisibilityConverter x:Key="BoolToVisibilityConverter" />
+    </UserControl.Resources>
 
     <DockPanel Background="White">
 
-        <pictures:SearchView DockPanel.Dock="Top" x:Name="SearchViewControl" Padding="0,10,10,10" Background="#f0f0f0"/>
+        <pictures:SearchView DockPanel.Dock="Top" Padding="0,10,10,10" Background="#f0f0f0"/>
 
         <Grid>
 
@@ -32,7 +35,7 @@
 
                 <GridSplitter Grid.Column="1" Width="5" HorizontalAlignment="Stretch"></GridSplitter>
 
-                <Grid Grid.Column="2">
+                <Grid Grid.Column="2" Visibility="{Binding PictureIsSelected, Converter={StaticResource BoolToVisibilityConverter}}">
                     
                     <Grid.RowDefinitions>
                         <RowDefinition Height="Auto"></RowDefinition>
