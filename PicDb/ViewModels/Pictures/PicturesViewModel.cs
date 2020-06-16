@@ -1,8 +1,6 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
-using System.Linq;
 using System.Windows.Documents;
-using PicDb.Business;
 using PicDb.Models;
 using PicDb.ViewModels.EventArguments;
 using PicDb.ViewModels.Photographers;
@@ -12,9 +10,9 @@ namespace PicDb.ViewModels.Pictures
     public class PicturesViewModel : ViewModelBase
     {
         private PicturePhotographersViewModel _picturePhotographersViewModel;
+        
         public PicturesListViewModel PicturesListViewModel { get; }
         public PictureLargeViewModel PictureLargeViewModel { get; }
-
         public PicturePhotographersViewModel PicturePhotographersViewModel
         {
             get => _picturePhotographersViewModel;
