@@ -42,7 +42,14 @@ namespace PicDb.Business
                         Iptc = MockIptc()
                     };
 
-                    if (!_dal.PictureExists(picture)) _dal.Save(picture);
+                    if (_dal.PictureExists(picture))
+                    {
+                        picture = _dal.GetPicture(picture.Directory, picture.Filename);
+                    }
+                    else
+                    {
+                        _dal.Save(picture);
+                    }
 
                     pictures.Add(picture);
                 }
@@ -111,7 +118,7 @@ namespace PicDb.Business
                         Manufacturer = "Olympus",
                         Model = "OM-D",
                         FocalLength = 150,
-                        DateTimeOriginal = new DateTime(1944, 10, 26)
+                        DateTimeOriginal = new DateTime(1997, 10, 26)
                     };
                     break;
             }

@@ -92,6 +92,11 @@ namespace PicDb.Data
             return _pictures.FirstOrDefault(p => p.Id == id);
         }
 
+        public Picture GetPicture(string directory, string filename)
+        {
+            throw new NotImplementedException();
+        }
+
         public Photographer GetPhotographer(int id)
         {
             throw new NotImplementedException();

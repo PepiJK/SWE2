@@ -19,11 +19,11 @@
             <RowDefinition Height="Auto" />
         </Grid.RowDefinitions>
 
-        <Label Grid.Row="0" Margin="0,0,0,10">Model: </Label>
-        <TextBox VerticalContentAlignment="Center" Grid.Row="0" Grid.Column="1" Margin="0,0,0,10" Text="{Binding Model}" />
+        <Label Grid.Row="0" Margin="0,0,0,10">Manufacturer: </Label>
+        <TextBox VerticalContentAlignment="Center" Grid.Row="0" Grid.Column="1" Margin="0,0,0,10" Text="{Binding Manufacturer}" />
 
-        <Label VerticalContentAlignment="Center" Grid.Row="1" Margin="0,0,0,10">Lens: </Label>
-        <TextBox VerticalContentAlignment="Center" Grid.Row="1" Grid.Column="1" Margin="0,0,0,10" Text="{Binding Lens}" />
+        <Label VerticalContentAlignment="Center" Grid.Row="1" Margin="0,0,0,10">Model: </Label>
+        <TextBox VerticalContentAlignment="Center" Grid.Row="1" Grid.Column="1" Margin="0,0,0,10" Text="{Binding Model}" />
 
         <Label Grid.Row="2" Margin="0,0,0,10">Focal Length: </Label>
         <TextBox VerticalContentAlignment="Center" Grid.Row="2" Grid.Column="1" Margin="0,0,0,10" Text="{Binding FocalLength}"/>

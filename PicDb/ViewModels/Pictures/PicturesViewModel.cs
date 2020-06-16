@@ -19,8 +19,8 @@ namespace PicDb.ViewModels.Pictures
         {
             PicturePhotographersViewModel = new PicturePhotographersViewModel();
             ExifViewModel = new ExifViewModel();
-            PictureLargeViewModel = new PictureLargeViewModel();
             IptcViewModel = new IptcViewModel();
+            PictureLargeViewModel = new PictureLargeViewModel();
             PicturesListViewModel = new PicturesListViewModel(pictures);
             PicturesListViewModel.OnPictureChanged += OnPictureChanged;
         }

@@ -19,19 +19,11 @@ namespace PicDb.ViewModels.Pictures
         private Picture _selectedPicture;
         
         public event EventHandler<PictureEventArguments> OnPictureChanged;
-        
-        public PicturesListViewModel(List<Picture> pictures)
-        {
-            if (pictures != null) Pictures = new List<Picture>(pictures);
-            else Pictures = new List<Picture>(_bl.GetPictures().ToList());
-        }
-
         public List<Picture> Pictures
         {
             get => _pictures;
             set => SetProperty(ref _pictures, value);
         }
-
         public Picture SelectedPicture
         {
             get => _selectedPicture;
@@ -41,6 +33,11 @@ namespace PicDb.ViewModels.Pictures
                 OnPictureChanged?.Invoke(this, new PictureEventArguments{Picture = value});
                 Log.Info("Selected Picture " + value.Filename);
             }
+        }
+        
+        public PicturesListViewModel(List<Picture> pictures)
+        {
+            Pictures = pictures ?? _bl.GetPictures().ToList();
         }
     }
 }
