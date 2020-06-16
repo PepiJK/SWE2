@@ -8,8 +8,8 @@
     </PropertyGroup>
 
     <ItemGroup>
-        <None Remove="App.config"/>
-        <None Remove="log4net.config"/>
+        <None Remove="App.config" />
+        <None Remove="log4net.config" />
     </ItemGroup>
 
     <ItemGroup>
@@ -25,14 +25,12 @@
     </ItemGroup>
 
     <ItemGroup>
-        <PackageReference Include="log4net" Version="2.0.8"/>
-        <PackageReference Include="System.Data.SQLite.Core" Version="1.0.112.2"/>
+        <PackageReference Include="log4net" Version="2.0.8" />
+        <PackageReference Include="System.Data.SQLite.Core" Version="1.0.112.2" />
     </ItemGroup>
 
     <ItemGroup>
-        <Content Include="App.config">
-            <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-        </Content>
+        <Content Include="App.config" />
         <Content Include="log4net.config">
             <CopyToOutputDirectory>Always</CopyToOutputDirectory>
         </Content>
@@ -110,7 +108,7 @@
         <Compile Update="Views\Photographers\PhotographersView.xaml.cs">
             <SubType>Code</SubType>
         </Compile>
-        <None Remove="Assets\camera_new.png"/>
+        <None Remove="Assets\camera_new.png" />
         <Resource Include="Assets\camera_new.png">
             <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
         </Resource>

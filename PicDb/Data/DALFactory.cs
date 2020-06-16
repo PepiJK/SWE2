@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Configuration;
 using System.Text;
+using log4net;
 
 namespace PicDb.Data
 {

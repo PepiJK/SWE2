@@ -17,8 +17,8 @@
     </ItemGroup>
 
     <ItemGroup>
-        <None Remove="testhost.conig" />
-        <Content Include="testhost.config">
+        <None Remove="testhost.config" />
+        <Content Include="testhost.dll.config">
             <CopyToOutputDirectory>Always</CopyToOutputDirectory>
         </Content>
     </ItemGroup>
