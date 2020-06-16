@@ -11,7 +11,6 @@ namespace PicDb.ViewModels.Pictures
     {
         public PicturesListViewModel PicturesListViewModel { get; }
         public PictureLargeViewModel PictureLargeViewModel { get; }
-        
         public PicturePhotographersViewModel PicturePhotographersViewModel { get; }
         public ExifViewModel ExifViewModel { get; }
         public IptcViewModel IptcViewModel { get; }
@@ -32,6 +31,11 @@ namespace PicDb.ViewModels.Pictures
             IptcViewModel?.OnPictureChanged(args.Picture);
             ExifViewModel?.OnPictureChanged(args.Picture);
             PictureLargeViewModel?.OnPictureChanged(args.Picture);
+        }
+
+        private void OnPhotographerChanged(object sender, PhotographerEventArgs args)
+        {
+            
         }
     }
 }
