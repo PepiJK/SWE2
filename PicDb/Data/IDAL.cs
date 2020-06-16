@@ -25,6 +25,14 @@ namespace PicDb.Data
         public Picture GetPicture(int id);
 
         /// <summary>
+        ///  Queries the database for the first picture that matches the directory and filename.
+        /// </summary>
+        /// <param name="directory"></param>
+        /// <param name="filename"></param>
+        /// <returns></returns>
+        public Picture GetPicture(string directory, string filename);
+
+        /// <summary>
         /// Queries the database for all Photographers.
         /// </summary>
         /// <returns>List of Photographer models</returns>

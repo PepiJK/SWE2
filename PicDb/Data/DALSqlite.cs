@@ -85,6 +85,49 @@ namespace PicDb.Data
             throw new NotImplementedException();
         }
 
+        public Picture GetPicture(string directory, string filename)
+        {
+            using var connection = new SQLiteConnection(_connectionString);
+            connection.Open();
+
+            var command = connection.CreateCommand();
+            command.CommandText = "SELECT id, directory, filename, iptc_id, exif_id, photographer_id FROM picture WHERE directory=@directory AND filename=@filename LIMIT 1";
+            command.Parameters.AddWithValue("directory", directory);
+            command.Parameters.AddWithValue("filename", filename);
+
+            Picture picture = null;
+            using var reader = command.ExecuteReader();
+            if (reader.Read())
+            {
+                picture = new Picture
+                {
+                    Id = reader.GetInt32(0),
+                    Directory = reader.IsDBNull(1) ? null : reader.GetString(1),
+                    Filename = reader.IsDBNull(2) ? null : reader.GetString(2),
+                };
+                    
+                if (!reader.IsDBNull(3))
+                {
+                    picture.ExifId = reader.GetInt32(3);
+                    picture.Exif = GetExif(reader.GetInt32(3));
+                }
+
+                if (!reader.IsDBNull(4))
+                {
+                    picture.IptcId = reader.GetInt32(4);
+                    picture.Iptc = GetIptc(reader.GetInt32(4));
+                }
+
+                if (!reader.IsDBNull(5))
+                {
+                    picture.PhotographerId = reader.GetInt32(5);
+                    picture.Photographer = GetPhotographer(reader.GetInt32(5));
+                }
+            }
+
+            return picture;
+        }
+
         public Photographer GetPhotographer(int id)
         {
             using var connection = new SQLiteConnection(_connectionString);
@@ -441,8 +484,8 @@ namespace PicDb.Data
                     exif = new Exif
                     {
                         Id = reader.GetInt32(0),
-                        Manufacturer = reader.IsDBNull(2) ? null : reader.GetString(2),
-                        Model = reader.IsDBNull(1) ? null : reader.GetString(1)
+                        Manufacturer = reader.IsDBNull(2) ? null : reader.GetString(1),
+                        Model = reader.IsDBNull(1) ? null : reader.GetString(2)
                     };
                     if (!reader.IsDBNull(3)) exif.FocalLength = reader.GetInt32(3);
                     if (!reader.IsDBNull(4)) exif.DateTimeOriginal = reader.GetDateTime(4);

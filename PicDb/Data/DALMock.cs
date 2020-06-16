@@ -27,6 +27,11 @@ namespace PicDb.Data
             throw new NotImplementedException();
         }
 
+        public Picture GetPicture(string directory, string filename)
+        {
+            throw new NotImplementedException();
+        }
+
         public Photographer GetPhotographer(int id)
         {
             throw new NotImplementedException();
