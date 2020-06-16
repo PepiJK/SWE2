@@ -29,7 +29,7 @@
         <TextBox VerticalContentAlignment="Center" Grid.Row="2" Grid.Column="1" Margin="0,0,0,10" Text="{Binding FocalLength}"/>
 
         <Label Grid.Row="3" Margin="0,0,0,10">Date Time Original: </Label>
-        <TextBox VerticalContentAlignment="Center" Grid.Row="3" Grid.Column="1" Margin="0,0,0,10" Text="{Binding DateTimeOriginal}" />
+        <DatePicker VerticalContentAlignment="Center" Grid.Row="3" Grid.Column="1" Margin="0,0,0,10" SelectedDate="{Binding DateTimeOriginal}" />
 
         <Button Grid.Row="4" Grid.Column="1" Padding="10,5,10,5" HorizontalAlignment="Right" Command="{Binding SaveExifCommand}">Save</Button>
     </Grid>

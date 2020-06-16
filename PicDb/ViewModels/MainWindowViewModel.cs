@@ -15,7 +15,7 @@ using PicDb.ViewModels.Pictures;
 
 namespace PicDb.ViewModels
 {
-    class MainWindowViewModel : ViewModelBase
+    public class MainWindowViewModel : ViewModelBase
     {
         private static readonly ILog Log = LogManager.GetLogger(typeof(MainWindowViewModel));
         private readonly BL _bl = new BL();

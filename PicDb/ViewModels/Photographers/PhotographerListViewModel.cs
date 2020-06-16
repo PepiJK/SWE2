@@ -52,7 +52,7 @@ namespace PicDb.ViewModels.Photographers
             {
                 SetProperty(ref _selectedPhotographer, value);
                 OnPhotographerChanged?.Invoke(this, new PhotographerEventArgs{Photographer = value});
-                Log.Info("Selected Photographer " + value.Lastname);
+                Log.Info("Selected Photographer " + value?.Lastname);
             }
         }
         
@@ -83,7 +83,7 @@ namespace PicDb.ViewModels.Photographers
             };
             _bl.Save(maxMuster);
             UpdatePhotographersList();
-            SelectedPhotographer = maxMuster;
+            SelectedPhotographer = null;
         }
     }
 }
