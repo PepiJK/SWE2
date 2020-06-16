@@ -38,7 +38,7 @@
                 <Grid Grid.Column="2" Visibility="{Binding PictureIsSelected, Converter={StaticResource BoolToVisibilityConverter}}">
                     
                     <Grid.RowDefinitions>
-                        <RowDefinition Height="Auto"></RowDefinition>
+                        <RowDefinition Height="*"></RowDefinition>
                         <RowDefinition Height="Auto"></RowDefinition>
                     </Grid.RowDefinitions>
                     
@@ -51,7 +51,7 @@
                         </TabItem>
                     </TabControl>
                 
-                    <pictures:PicturePhotographerView Grid.Row="1" Padding="50, 15, 50, 5" DataContext="{Binding PicturePhotographersViewModel}"></pictures:PicturePhotographerView>
+                    <pictures:PicturePhotographerView Grid.Row="1"  Padding="10" DataContext="{Binding PicturePhotographersViewModel}"></pictures:PicturePhotographerView>
                 </Grid>
                 
             </Grid>
