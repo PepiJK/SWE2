@@ -78,6 +78,9 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
+    <Page Update="Views\Pictures\PicturePhotographerView.xaml">
+      <Generator></Generator>
+    </Page>
   </ItemGroup>
 
   <ItemGroup>
@@ -112,6 +115,12 @@
     <Resource Include="Assets\camera_new.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Resource>
+    <Compile Update="Views\Pictures\PicturePhotographer.xaml.cs">
+      <DependentUpon>PicturePhotographer.xaml</DependentUpon>
+    </Compile>
+    <Compile Update="Views\Pictures\PicturePhotographerView.xaml.cs">
+      <DependentUpon>PicturePhotographerView.xaml</DependentUpon>
+    </Compile>
   </ItemGroup>
 
 </Project>
