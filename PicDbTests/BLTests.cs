@@ -23,6 +23,7 @@ namespace PicDbTests
         public void ShouldGetAllPhotographers()
         {
             var photographers = _bl.GetPhotographers().ToList();
+            
             Assert.That(photographers, Is.Not.Null);
             Assert.That(photographers.Count, Is.EqualTo(3));
         }
@@ -31,6 +32,7 @@ namespace PicDbTests
         public void ShouldGetAllPictures()
         {
             var pictures = _bl.GetPictures().ToList();
+            
             Assert.That(pictures, Is.Not.Null);
             Assert.That(pictures.Count, Is.EqualTo(3));
         }
@@ -58,9 +60,11 @@ namespace PicDbTests
         public void ShouldThrowArgumentNullExceptionOnSaveNullPhotographer()
         {
             Photographer newPhotographer = null;
+            
             Assert.Throws<ArgumentNullException>(() => _bl.Save(newPhotographer));
             
             var photographers = _bl.GetPhotographers().ToList();
+            
             Assert.That(photographers, Is.Not.Null);
             Assert.That(photographers.Count, Is.EqualTo(3));
         }
@@ -73,6 +77,7 @@ namespace PicDbTests
                 Lastname = "Mustermann"
             };
             var ex = Assert.Throws<Exception>(() => _bl.Save(newPhotographer));
+            
             Assert.That(ex.Message, Is.EqualTo("Firstname is empty."));
             
             newPhotographer = new Photographer
@@ -81,9 +86,11 @@ namespace PicDbTests
                 Lastname = "Mustermann"
             };
             ex = Assert.Throws<Exception>(() => _bl.Save(newPhotographer));
+            
             Assert.That(ex.Message, Is.EqualTo("Firstname is empty."));
             
             var photographers = _bl.GetPhotographers().ToList();
+            
             Assert.That(photographers, Is.Not.Null);
             Assert.That(photographers.Count, Is.EqualTo(3));
         }
@@ -96,6 +103,7 @@ namespace PicDbTests
                 Firstname = "Max"
             };
             var ex = Assert.Throws<Exception>(() => _bl.Save(newPhotographer));
+            
             Assert.That(ex.Message, Is.EqualTo("Lastname is empty."));
             
             newPhotographer = new Photographer
@@ -104,9 +112,11 @@ namespace PicDbTests
                 Lastname = "             "
             };
             ex = Assert.Throws<Exception>(() => _bl.Save(newPhotographer));
+            
             Assert.That(ex.Message, Is.EqualTo("Lastname is empty."));
             
             var photographers = _bl.GetPhotographers().ToList();
+            
             Assert.That(photographers, Is.Not.Null);
             Assert.That(photographers.Count, Is.EqualTo(3));
         }
@@ -121,9 +131,11 @@ namespace PicDbTests
                 Birthdate = DateTime.Now.AddDays(1)
             };
             var ex = Assert.Throws<Exception>(() => _bl.Save(newPhotographer));
+            
             Assert.That(ex.Message, Is.EqualTo("Birthdate is not in the past."));
 
             var photographers = _bl.GetPhotographers().ToList();
+            
             Assert.That(photographers, Is.Not.Null);
             Assert.That(photographers.Count, Is.EqualTo(3));
         }
@@ -132,6 +144,7 @@ namespace PicDbTests
         public void ShouldUpdatePicture()
         {
             var picture = _bl.GetPictures().First();
+            
             Assert.That(picture, Is.Not.Null);
 
             picture.Filename = "newFile.png";
@@ -148,6 +161,7 @@ namespace PicDbTests
         public void ShouldThrowArgumentNullExceptionOnUpdateInvalidPicture()
         {
             Picture nullPicture = null;
+            
             Assert.Throws<ArgumentNullException>(() => _bl.Update(nullPicture));
         }
 
@@ -155,6 +169,7 @@ namespace PicDbTests
         public void ShouldMockExifIptcOnUpdatePictureWithNoExifIptc()
         {
             var picture = _bl.GetPictures().Last();
+            
             Assert.That(picture, Is.Not.Null);
             Assert.That(picture.ExifId, Is.Null);
             Assert.That(picture.Exif, Is.Null);
@@ -164,6 +179,7 @@ namespace PicDbTests
             _bl.Update(picture);
 
             var updatedPicture = _bl.GetPictures().Last();
+            
             Assert.That(updatedPicture, Is.Not.Null);
             Assert.That(picture.ExifId, Is.Not.Null);
             Assert.That(picture.Exif, Is.Not.Null);
@@ -175,13 +191,13 @@ namespace PicDbTests
         public void ShouldUpdatePhotographer()
         {
             var photographer = _bl.GetPhotographers().First();
-
             photographer.Firstname = "Max";
             photographer.Lastname = "Mustermann";
             
             _bl.Update(photographer);
 
             var newPhotographer = _bl.GetPhotographers().First();
+            
             Assert.That(photographer, Is.EqualTo(newPhotographer));
         }
 
@@ -252,7 +268,7 @@ namespace PicDbTests
         }
 
         [Test]
-        public void GetPhotographers()
+        public void ShouldGetPhotographersWithSearchString()
         {
             var searchString = "wal";
             var photographer = _bl.GetPhotographers().First();
@@ -260,6 +276,32 @@ namespace PicDbTests
             
             Assert.That(photographers.Count, Is.EqualTo(1));
             Assert.That(photographers.First(), Is.EqualTo(photographer));
+        }
+        
+        [Test]
+        public void ShouldGetAllPhotographersWithEmptySearchString()
+        {
+            var searchString = "";
+            var photographers = _bl.GetPhotographers(searchString).ToList();
+            
+            Assert.That(photographers.Count, Is.EqualTo(3));
+        }
+
+        [Test]
+        public void ShouldNotGetAnyPhotographerWithSearchString()
+        {
+            var searchString = "fhuizr980eqzfeuiaprz43";
+            var photographers = _bl.GetPhotographers(searchString).ToList();
+            
+            Assert.That(photographers.Count, Is.EqualTo(0));
+        }
+
+        [Test]
+        public void ShouldThrowArgumentNullExceptionOnGetPhotographersWithNullSearchString()
+        {
+            string searchString = null;
+            
+            Assert.Throws<ArgumentNullException>(() => _bl.GetPhotographers(searchString));
         }
     }
 }
