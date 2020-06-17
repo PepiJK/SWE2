@@ -1,32 +1,14 @@
 ﻿using System;
-using log4net;
-using PicDb.Data;
 using PicDb.ViewModels.EventArguments;
 
 namespace PicDb.ViewModels.Photographers
 {
-    /// <summary>
-    /// Parent VM for photographer list and info.
-    /// </summary>
     public class PhotographersViewModel : ViewModelBase
     {
-        private static readonly ILog Log = LogManager.GetLogger(typeof(PhotographersViewModel));
-        
         public event EventHandler PhotographersUpdated;
-        
-        /// <summary>
-        /// VM for the photographer list.
-        /// </summary>
         public PhotographerListViewModel PhotographerListViewModel { get;}
-        
-        /// <summary>
-        /// VM for the photographer info.
-        /// </summary>
         public PhotographerInfoViewModel PhotographerInfoViewModel { get;}
         
-        /// <summary>
-        /// Constructor that initializes the photographer info vm, list vm and their event handlers.
-        /// </summary>
         public PhotographersViewModel()
         {
             PhotographerListViewModel = new PhotographerListViewModel();
@@ -40,7 +22,7 @@ namespace PicDb.ViewModels.Photographers
             PhotographersUpdated?.Invoke(this, new EventArgs());
             PhotographerInfoViewModel?.PhotographerChanged(args.Photographer);
         }
-
+        
         private void OnPhotographerUpdated(object sender, EventArgs args)
         {
             PhotographersUpdated?.Invoke(this, new EventArgs());

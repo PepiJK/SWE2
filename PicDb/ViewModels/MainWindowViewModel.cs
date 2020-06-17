@@ -1,15 +1,8 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.IO;
 using System.Linq;
-using System.Text;
-using System.Windows;
-using System.Windows.Controls;
 using System.Windows.Input;
-using log4net;
 using PicDb.Business;
-using PicDb.Data;
-using PicDb.ViewModels.EventArguments;
 using PicDb.ViewModels.Photographers;
 using PicDb.ViewModels.Pictures;
 
@@ -17,7 +10,6 @@ namespace PicDb.ViewModels
 {
     public class MainWindowViewModel : ViewModelBase
     {
-        private static readonly ILog Log = LogManager.GetLogger(typeof(MainWindowViewModel));
         private readonly BL _bl = new BL();
         private readonly DelegateCommand _openDirectoryCommand;
         private readonly DelegateCommand _showPicturesViewCommand;

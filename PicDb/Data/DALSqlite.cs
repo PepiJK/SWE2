@@ -3,7 +3,6 @@ using PicDb.Models;
 using System;
 using System.Collections.Generic;
 using System.Configuration;
-using System.Data;
 using System.Data.SQLite;
 using System.IO;
 
@@ -26,7 +25,7 @@ namespace PicDb.Data
         {
             if (!File.Exists(_dbFileName))
             {
-                if (Path.GetDirectoryName(_dbFileName) != string.Empty)
+                if (!string.IsNullOrWhiteSpace(Path.GetDirectoryName(_dbFileName)))
                     Directory.CreateDirectory(Path.GetDirectoryName(_dbFileName));
                 var file = File.Create(_dbFileName);
                 file.Close();

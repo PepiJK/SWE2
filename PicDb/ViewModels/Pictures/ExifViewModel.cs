@@ -1,6 +1,5 @@
 ﻿using System;
 using System.Windows.Input;
-using log4net;
 using PicDb.Business;
 using PicDb.Models;
 
@@ -8,8 +7,7 @@ namespace PicDb.ViewModels.Pictures
 {
     public class ExifViewModel : ViewModelBase
     {
-        private static readonly ILog Log = LogManager.GetLogger(typeof(ExifViewModel));
-        private BL _bl = new BL();
+        private readonly BL _bl = new BL();
         private Picture _selectedPicture;
         private string _model;
         private string _manufacturer;
@@ -72,6 +70,5 @@ namespace PicDb.ViewModels.Pictures
             _selectedPicture.Exif.DateTimeOriginal = DateTimeOriginal;
             _bl.Update(_selectedPicture);
         }
-        
     }
 }

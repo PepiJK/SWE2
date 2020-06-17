@@ -1,20 +1,17 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.Configuration;
-using System.Text;
-using log4net;
 
 namespace PicDb.Data
 {
 	/// <summary>
-	/// DAL Factory for providing an IDAL instance.
+	/// DAL factory class for providing an IDAL instance.
 	/// </summary>
 	public class DALFactory
 	{
 		/// <summary>
 		/// Return an IDAL instance which is specified in the app settings.
 		/// </summary>
-		/// <returns>IDAL instance</returns>
+		/// <returns>IDAL instance.</returns>
 		public static IDAL GetDAL()
 		{
 			string dal = ConfigurationManager.AppSettings["DAL"];

@@ -1,8 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
-
-namespace PicDb.Models
+﻿namespace PicDb.Models
 {
 	public class Picture
 	{

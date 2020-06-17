@@ -17,7 +17,6 @@ namespace PicDb.ViewModels.Pictures
             get => _photographers;
             set => SetProperty(ref _photographers, value);
         }
-        
         public Photographer SelectedPhotographer
         {
             get => _selectedPhotographer;
@@ -49,6 +48,5 @@ namespace PicDb.ViewModels.Pictures
             Photographers = _bl.GetPhotographers().ToList();
             SelectedPhotographer = Photographers?.FirstOrDefault(pho => pho.Id == _selectedPicture?.Photographer?.Id);
         }
-        
     }
 }

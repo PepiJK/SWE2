@@ -1,27 +1,54 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Drawing;
 using System.Linq;
-using System.Windows.Automation;
 using PicDb.Data;
 using PicDb.Models;
 
 namespace PicDb.Business
 {
+    /// <summary>
+    /// Business layer class which contains methods to access the data access layer.
+    /// </summary>
     public class BL
     {
         private readonly IDAL _dal = DALFactory.GetDAL();
-
+        
+        /// <summary>
+        /// Return all photographers from dal.
+        /// </summary>
+        /// <returns>Photographers as IEnumerable.</returns>
         public IEnumerable<Photographer> GetPhotographers()
         {
             return _dal.GetPhotographers();
         }
 
+        /// <summary>
+        /// Returns all pictures from dal.
+        /// </summary>
+        /// <returns>Pictures as IEnumerable.</returns>
         public IEnumerable<Picture> GetPictures()
         {
             return _dal.GetPictures();
         }
+        
+        /// <summary>
+        /// Returns all pictures from the dal which match the passed search string.
+        /// </summary>
+        /// <param name="searchString"></param>
+        /// <returns>Pictures as IEnumerable.</returns>
+        /// <exception cref="ArgumentNullException"></exception>
+        public IEnumerable<Photographer> GetPhotographers(string searchString)
+        {
+            if (searchString == null) throw new ArgumentNullException();
+            return _dal.GetPhotographers(searchString);
+        }
 
+        /// <summary>
+        /// Loops through every string and either saves pictures in the dal if it does not already exist
+        /// or just gets the picture from dal based on its directory and filename and append it to a list and returns it.
+        /// </summary>
+        /// <param name="dirs"></param>
+        /// <returns>IEnumerable of Pictures</returns>
         public IEnumerable<Picture> SavePicturesFromDir(IEnumerable<string> dirs)
         {
             var pictures = new List<Picture>();
@@ -42,15 +69,12 @@ namespace PicDb.Business
                         Iptc = MockIptc()
                     };
 
-                    if (_dal.PictureExists(picture))
-                    {
-                        picture = _dal.GetPicture(picture.Directory, picture.Filename);
-                    }
-                    else
+                    if (!_dal.PictureExists(picture))
                     {
                         _dal.Save(picture);
                     }
-
+                    
+                    picture = _dal.GetPicture(picture.Directory, picture.Filename);
                     pictures.Add(picture);
                 }
             }
@@ -58,12 +82,21 @@ namespace PicDb.Business
             return pictures;
         }
 
+        /// <summary>
+        /// Checks the validity of the passed photographer and save it to the dal if its valid.
+        /// </summary>
+        /// <param name="photographer"></param>
         public void Save(Photographer photographer)
         {
             CheckPhotographerValidity(photographer);
             _dal.Save(photographer);
         }
 
+        /// <summary>
+        /// Updates a passed picture in the dal and adds mocked exif and iptc data if it is not set already.
+        /// </summary>
+        /// <param name="picture"></param>
+        /// <exception cref="ArgumentNullException"></exception>
         public void Update(Picture picture)
         {
             if (picture == null) throw new ArgumentNullException();
@@ -72,28 +105,34 @@ namespace PicDb.Business
             _dal.Update(picture);
         }
 
+        /// <summary>
+        /// Checks the validity of the passed photographer and updates it in the dal if its valid.
+        /// </summary>
+        /// <param name="photographer"></param>
         public void Update(Photographer photographer)
         {
             CheckPhotographerValidity(photographer);
             _dal.Update(photographer);
         }
 
+        /// <summary>
+        /// Checks the validity of the passed photographer and deletes it in the dal if its valid.
+        /// </summary>
+        /// <param name="photographer"></param>
         public void Delete(Photographer photographer)
         {
             CheckPhotographerValidity(photographer);
             _dal.Delete(photographer);
         }
 
+        /// <summary>
+        /// Deletes a given picture in the dal.
+        /// </summary>
+        /// <param name="picture"></param>
         public void Delete(Picture picture)
         {
             if (picture == null) throw new ArgumentNullException();
             _dal.Delete(picture);
-        }
-
-        public IEnumerable<Photographer> GetPhotographers(string searchString)
-        {
-            if (searchString == null) throw new ArgumentNullException();
-            return _dal.GetPhotographers(searchString);
         }
 
         private void CheckPhotographerValidity(Photographer photographer)

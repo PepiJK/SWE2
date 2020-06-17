@@ -1,11 +1,8 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Collections.ObjectModel;
 using System.Linq;
-using System.Windows.Documents;
 using log4net;
 using PicDb.Business;
-using PicDb.Data;
 using PicDb.Models;
 using PicDb.ViewModels.EventArguments;
 
