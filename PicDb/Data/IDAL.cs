@@ -67,8 +67,8 @@ namespace PicDb.Data
         /// <summary>
         /// Save a given Picture in the database.
         /// </summary>
-        /// <param name="pictures"></param>
-        public void Save(Picture pictures);
+        /// <param name="picture"></param>
+        public void Save(Picture picture);
 
         /// <summary>
         /// Updates a given Photographer in the database.

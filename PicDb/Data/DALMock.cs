@@ -87,21 +87,21 @@ namespace PicDb.Data
                 Notes = "hatte bereits im Alter von fünf Jahren eine Kamera"
             }
         };
-        
-        
+
+
         public void Delete(Photographer photographer)
         {
-            throw new NotImplementedException();
+            _photographers.Remove(photographer);
         }
 
         public void Delete(Picture picture)
         {
-            throw new NotImplementedException();
+            _pictures.Remove(picture);
         }
 
         public bool PictureExists(Picture picture)
         {
-            throw new NotImplementedException();
+            return _pictures.FirstOrDefault(p => p.FullPath == picture.FullPath) != null;
         }
 
         public Picture GetPicture(int id)
@@ -111,7 +111,7 @@ namespace PicDb.Data
 
         public Picture GetPicture(string directory, string filename)
         {
-            throw new NotImplementedException();
+            return _pictures.FirstOrDefault(p => p.FullPath == directory + filename);
         }
 
         public Photographer GetPhotographer(int id)
@@ -126,7 +126,8 @@ namespace PicDb.Data
 
         public IEnumerable<Photographer> GetPhotographers(string searchString)
         {
-            throw new NotImplementedException();
+            var cleanedSearchString = searchString.ToLower().Trim();
+            return _photographers.Where(p => p.FullName.ToLower().Trim().Contains(cleanedSearchString));
         }
 
         public IEnumerable<Picture> GetPictures()
@@ -150,9 +151,10 @@ namespace PicDb.Data
             _photographers.Add(photographer);
         }
 
-        public void Save(Picture pictures)
+        public void Save(Picture picture)
         {
-            throw new NotImplementedException();
+            picture.Id = ++_currentPicId;
+            _pictures.Add(picture);
         }
 
         public void Update(Photographer photographer)

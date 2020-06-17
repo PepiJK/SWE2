@@ -1,4 +1,5 @@
 using System;
+using System.Collections.Generic;
 using System.Linq;
 using System.Security.Principal;
 using NUnit.Framework;
@@ -129,6 +130,83 @@ namespace PicDbTests
             Assert.That(picture.Exif, Is.Not.Null);
             Assert.That(picture.IptcId, Is.Not.Null);
             Assert.That(picture.Iptc, Is.Not.Null);
+        }
+
+        [Test]
+        public void ShouldSavePicturesFromDir()
+        {
+            var dirs = new List<string>
+            {
+                "C:\\Users\\josef\\Pictures\\Pallas Athene.png",
+                "C:\\Users\\josef\\Pictures\\Bildnis der Sonja Knips.png",
+                "C:\\Users\\josef\\Pictures\\Nuda Veritas.jpg"
+            };
+
+            var pictures = _bl.SavePicturesFromDir(dirs);
+            var allPictures = _bl.GetPictures().ToList();
+            
+            Assert.That(allPictures.Count, Is.EqualTo(6));
+        }
+
+        [Test]
+        public void ShouldNotAddAnAlreadyExistingPicture()
+        {
+            var dirs = new List<string>
+            {
+                "C:\\Users\\wally\\Pictures\\Bauerngarten mit Sonnenblumen.png"
+            };
+            
+            var pictures = _bl.SavePicturesFromDir(dirs);
+            var allPictures = _bl.GetPictures().ToList();
+            
+            Assert.That(allPictures.Count, Is.EqualTo(3));
+        }
+        
+        [Test]
+        public void ShouldNotAddAPictureWithWrongType()
+        {
+            var dirs = new List<string>
+            {
+                "C:\\Users\\josef\\Pictures\\Pallas Athene.txt",
+                "C:\\Users\\josef\\Pictures\\Bildnis der Sonja Knips.pdf",
+                "C:\\Users\\josef\\Pictures\\Nuda Veritas.ogg"
+            };
+            
+            var pictures = _bl.SavePicturesFromDir(dirs);
+            var allPictures = _bl.GetPictures().ToList();
+            
+            Assert.That(allPictures.Count, Is.EqualTo(3));
+        }
+
+        [Test]
+        public void ShouldDeletePhotographer()
+        {
+            var photographer = _bl.GetPhotographers().First();
+            _bl.Delete(photographer);
+            var photographers = _bl.GetPhotographers().ToList();
+            
+            Assert.That(photographers.Count, Is.EqualTo(2));
+        }
+
+        [Test]
+        public void ShouldDeletePicture()
+        {
+            var picture = _bl.GetPictures().First();
+            _bl.Delete(picture);
+            var pictures = _bl.GetPictures().ToList();
+            
+            Assert.That(pictures.Count, Is.EqualTo(2));
+        }
+
+        [Test]
+        public void GetPhotographers()
+        {
+            var searchString = "wal";
+            var photographer = _bl.GetPhotographers().First();
+            var photographers = _bl.GetPhotographers(searchString).ToList();
+            
+            Assert.That(photographers.Count, Is.EqualTo(1));
+            Assert.That(photographers.First(), Is.EqualTo(photographer));
         }
     }
 }
