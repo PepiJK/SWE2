@@ -78,6 +78,22 @@ namespace PicDb.Business
             _dal.Update(photographer);
         }
 
+        public void Delete(Photographer photographer)
+        {
+            CheckPhotographerValidity(photographer);
+            _dal.Delete(photographer);
+        }
+
+        public void Delete(Picture picture)
+        {
+            _dal.Delete(picture);
+        }
+
+        public IEnumerable<Photographer> GetPhotographers(string searchString)
+        {
+            return _dal.GetPhotographers(searchString);
+        }
+
         private void CheckPhotographerValidity(Photographer photographer)
         {
             if (photographer == null) throw new ArgumentNullException();
