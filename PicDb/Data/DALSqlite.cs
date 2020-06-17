@@ -449,19 +449,17 @@ namespace PicDb.Data
             command.Parameters.AddWithValue("id", id);
 
             Iptc iptc = null;
-            using (var reader = command.ExecuteReader())
+            using var reader = command.ExecuteReader();
+            if (reader.Read())
             {
-                if (reader.Read())
+                iptc = new Iptc
                 {
-                    iptc = new Iptc
-                    {
-                        Id = reader.GetInt32(0),
-                        Caption = reader.IsDBNull(1) ? null : reader.GetString(1),
-                        Keywords = reader.IsDBNull(2) ? null : reader.GetString(2),
-                        Credit = reader.IsDBNull(3) ? null : reader.GetString(3),
-                        Copyright = reader.IsDBNull(4) ? null : reader.GetString(4)
-                    };
-                }
+                    Id = reader.GetInt32(0),
+                    Caption = reader.IsDBNull(1) ? null : reader.GetString(1),
+                    Keywords = reader.IsDBNull(2) ? null : reader.GetString(2),
+                    Credit = reader.IsDBNull(3) ? null : reader.GetString(3),
+                    Copyright = reader.IsDBNull(4) ? null : reader.GetString(4)
+                };
             }
 
             return iptc;
@@ -477,19 +475,17 @@ namespace PicDb.Data
             command.Parameters.AddWithValue("id", id);
 
             Exif exif = null;
-            using (var reader = command.ExecuteReader())
+            using var reader = command.ExecuteReader();
+            if (reader.Read())
             {
-                if (reader.Read())
+                exif = new Exif
                 {
-                    exif = new Exif
-                    {
-                        Id = reader.GetInt32(0),
-                        Manufacturer = reader.IsDBNull(2) ? null : reader.GetString(1),
-                        Model = reader.IsDBNull(1) ? null : reader.GetString(2)
-                    };
-                    if (!reader.IsDBNull(3)) exif.FocalLength = reader.GetInt32(3);
-                    if (!reader.IsDBNull(4)) exif.DateTimeOriginal = reader.GetDateTime(4);
-                }
+                    Id = reader.GetInt32(0),
+                    Manufacturer = reader.IsDBNull(2) ? null : reader.GetString(1),
+                    Model = reader.IsDBNull(1) ? null : reader.GetString(2)
+                };
+                if (!reader.IsDBNull(3)) exif.FocalLength = reader.GetInt32(3);
+                if (!reader.IsDBNull(4)) exif.DateTimeOriginal = reader.GetDateTime(4);
             }
 
             return exif;

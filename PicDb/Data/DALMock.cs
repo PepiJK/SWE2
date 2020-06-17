@@ -8,6 +8,11 @@ namespace PicDb.Data
 {
     public class DALMock : IDAL
     {
+        private int _currentPicId = 3;
+        private int _currentPhotographerId = 3;
+        private int _currentIptcId = 1;
+        private int _currentExifId = 2;
+        
         private List<Picture> _pictures = new List<Picture>
         {
             new Picture
@@ -16,7 +21,17 @@ namespace PicDb.Data
                 Directory = "C:\\Users\\wally\\Pictures\\",
                 Filename = "Bauerngarten mit Sonnenblumen.png",
                 ExifId = 1,
+                Exif = new Exif
+                {
+                    Id = 1,
+                    Manufacturer = "Canon"
+                },
                 IptcId = 1,
+                Iptc = new Iptc
+                {
+                    Id = 1,
+                    Caption = "yoyo"
+                },
                 PhotographerId = 1
             },
             
@@ -26,17 +41,19 @@ namespace PicDb.Data
                 Directory = "C:\\Users\\wally\\Pictures\\",
                 Filename = "Adele Bloch-Bauer I.png",
                 ExifId = 2,
-                IptcId = 2,
+                Exif = new Exif
+                {
+                  Id  = 2,
+                  DateTimeOriginal = new DateTime(2020, 3, 1)
+                },
                 PhotographerId = 2
             },
             
             new Picture
             {
-                Id = 2,
+                Id = 3,
                 Directory = "C:\\Users\\wally\\Pictures\\",
                 Filename = "Dame mit lila Schal.jpg",
-                ExifId = 2,
-                IptcId = 2,
                 PhotographerId = 2
             }
         };
@@ -129,7 +146,8 @@ namespace PicDb.Data
 
         public void Save(Photographer photographer)
         {
-            throw new NotImplementedException();
+            photographer.Id = ++_currentPhotographerId;
+            _photographers.Add(photographer);
         }
 
         public void Save(Picture pictures)
@@ -144,7 +162,23 @@ namespace PicDb.Data
 
         public void Update(Picture picture)
         {
-            throw new NotImplementedException();
+            if (picture.ExifId == null && picture.Exif != null)
+            {
+                var exifId =  ++_currentExifId;
+                picture.ExifId = exifId;
+                picture.Exif.Id = exifId;
+            }
+
+            if (picture.IptcId == null && picture.Iptc != null)
+            {
+                var iptcId =  ++_currentIptcId;
+                picture.IptcId = iptcId;
+                picture.Iptc.Id = iptcId;
+            }
+            
+            _pictures.Remove(_pictures.FirstOrDefault(p => p.Id == picture.Id));
+            _pictures.Add(picture);
+            _pictures = _pictures.OrderBy(p => p.Id).ToList();
         }
     }
 }

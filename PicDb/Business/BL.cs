@@ -66,7 +66,7 @@ namespace PicDb.Business
 
         public void Update(Picture picture)
         {
-            if (picture == null) throw new NullReferenceException();
+            if (picture == null) throw new ArgumentNullException();
             picture.Exif ??= MockExif();
             picture.Iptc ??= MockIptc();
             _dal.Update(picture);
@@ -80,87 +80,72 @@ namespace PicDb.Business
 
         private void CheckPhotographerValidity(Photographer photographer)
         {
-            if (photographer == null) throw new NullReferenceException();
+            if (photographer == null) throw new ArgumentNullException();
             if (string.IsNullOrWhiteSpace(photographer.Firstname)) throw new Exception("Firstname is empty.");
-            if (string.IsNullOrWhiteSpace(photographer.Lastname)) throw new Exception("Lastname is empty");
+            if (string.IsNullOrWhiteSpace(photographer.Lastname)) throw new Exception("Lastname is empty.");
             if (photographer.Birthdate.HasValue && photographer.Birthdate > DateTime.Now)
                 throw new Exception("Birthdate is not in the past.");
         }
 
         private Exif MockExif()
         {
-            Random random = new Random();
-            Exif mockExif = null;
-            
-            switch (random.Next() % 3)
+            var random = new Random();
+            var mockExif = (random.Next() % 3) switch
             {
-                case 0:
-                    mockExif = new Exif
-                    {
-                        Manufacturer = "Canon",
-                        Model = "PowerShot G7 X Mark III",
-                        FocalLength = 120,
-                        DateTimeOriginal = new DateTime(1944, 6, 6)
-                    };
-                    break;
-                case 1:
-                    mockExif = new Exif
-                    {
-                        Manufacturer = "Nikon",
-                        Model = "D6",
-                        FocalLength = 200,
-                        DateTimeOriginal = new DateTime(1997, 10, 11)
-                    };
-                    break;
-                case 2:
-                    mockExif = new Exif
-                    {
-                        Manufacturer = "Olympus",
-                        Model = "OM-D",
-                        FocalLength = 150,
-                        DateTimeOriginal = new DateTime(1997, 10, 26)
-                    };
-                    break;
-            }
+                0 => new Exif
+                {
+                    Manufacturer = "Canon",
+                    Model = "PowerShot G7 X Mark III",
+                    FocalLength = 120,
+                    DateTimeOriginal = new DateTime(1944, 6, 6)
+                },
+                1 => new Exif
+                {
+                    Manufacturer = "Nikon",
+                    Model = "D6",
+                    FocalLength = 200,
+                    DateTimeOriginal = new DateTime(1997, 10, 11)
+                },
+                2 => new Exif
+                {
+                    Manufacturer = "Olympus",
+                    Model = "OM-D",
+                    FocalLength = 150,
+                    DateTimeOriginal = new DateTime(1997, 10, 26)
+                },
+                _ => throw new Exception("Modulo 3 returned something other than 0, 1 or 2.")
+            };
 
             return mockExif;
         }
 
         private Iptc MockIptc()
         {
-            Random random = new Random();
-            Iptc mockIptc = null;
-            
-            switch (random.Next() % 3)
+            var random = new Random();
+            var mockIptc = (random.Next() % 3) switch
             {
-                case 0:
-                    mockIptc = new Iptc
-                    {
-                        Caption = "Meisterwerk",
-                        Keywords = "exzellent, großartig",
-                        Credit = "Josef Koch",
-                        Copyright = "FH Technikum Wien"
-                    };
-                    break;
-                case 1:
-                    mockIptc= new Iptc
-                    {
-                        Caption = "Gottgleiches Photo",
-                        Keywords = "gott, von jesus himself",
-                        Credit = "Thomas Wally",
-                        Copyright = "FH Technikum Wien"
-                    };
-                    break;
-                case 2:
-                    mockIptc = new Iptc
-                    {
-                        Caption = "Der Schrei",
-                        Keywords = "geschrei, expressionissmus",
-                        Credit = "Edvard Munch",
-                        Copyright = ""
-                    };
-                    break;
-            }
+                0 => new Iptc
+                {
+                    Caption = "Meisterwerk",
+                    Keywords = "exzellent, großartig",
+                    Credit = "Josef Koch",
+                    Copyright = "FH Technikum Wien"
+                },
+                1 => new Iptc
+                {
+                    Caption = "Gottgleiches Photo",
+                    Keywords = "gott, von jesus himself",
+                    Credit = "Thomas Wally",
+                    Copyright = "FH Technikum Wien"
+                },
+                2 => new Iptc
+                {
+                    Caption = "Der Schrei", 
+                    Keywords = "geschrei, expressionissmus", 
+                    Credit = "Edvard Munch"
+                },
+                _ => throw new Exception("Modulo 3 returned something other than 0, 1 or 2.")
+            };
 
             return mockIptc;
         }
