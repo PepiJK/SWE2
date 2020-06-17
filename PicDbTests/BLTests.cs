@@ -54,12 +54,20 @@ namespace PicDbTests
         }
 
         [Test]
-        public void ShouldThrowExceptionOnSaveInvalidPhotographer()
+        public void ShouldThrowArgumentNullExceptionOnSaveNullPhotographer()
         {
             Photographer newPhotographer = null;
             Assert.Throws<ArgumentNullException>(() => _bl.Save(newPhotographer));
             
-            newPhotographer = new Photographer
+            var photographers = _bl.GetPhotographers().ToList();
+            Assert.That(photographers, Is.Not.Null);
+            Assert.That(photographers.Count, Is.EqualTo(3));
+        }
+
+        [Test]
+        public void ShouldThrowExceptionOnSavePhotographerWithNoFirstname()
+        {
+            var newPhotographer = new Photographer
             {
                 Lastname = "Mustermann"
             };
@@ -68,19 +76,50 @@ namespace PicDbTests
             
             newPhotographer = new Photographer
             {
-                Firstname = "Max",
-                Lastname = ""
+                Firstname = "       ",
+                Lastname = "Mustermann"
             };
             ex = Assert.Throws<Exception>(() => _bl.Save(newPhotographer));
+            Assert.That(ex.Message, Is.EqualTo("Firstname is empty."));
+            
+            var photographers = _bl.GetPhotographers().ToList();
+            Assert.That(photographers, Is.Not.Null);
+            Assert.That(photographers.Count, Is.EqualTo(3));
+        }
+
+        [Test]
+        public void ShouldThrowExceptionOnSavePhotographerWithNoLastname()
+        {
+            var newPhotographer = new Photographer
+            {
+                Firstname = "Max"
+            };
+            var ex = Assert.Throws<Exception>(() => _bl.Save(newPhotographer));
             Assert.That(ex.Message, Is.EqualTo("Lastname is empty."));
             
             newPhotographer = new Photographer
             {
                 Firstname = "Max",
+                Lastname = "             "
+            };
+            ex = Assert.Throws<Exception>(() => _bl.Save(newPhotographer));
+            Assert.That(ex.Message, Is.EqualTo("Lastname is empty."));
+            
+            var photographers = _bl.GetPhotographers().ToList();
+            Assert.That(photographers, Is.Not.Null);
+            Assert.That(photographers.Count, Is.EqualTo(3));
+        }
+
+        [Test]
+        public void ShouldThrowExceptionOnSavePhotographerWithDateInPast()
+        {
+            var newPhotographer = new Photographer
+            {
+                Firstname = "Max",
                 Lastname = "Mustermann",
                 Birthdate = DateTime.Now.AddDays(1)
             };
-            ex = Assert.Throws<Exception>(() => _bl.Save(newPhotographer));
+            var ex = Assert.Throws<Exception>(() => _bl.Save(newPhotographer));
             Assert.That(ex.Message, Is.EqualTo("Birthdate is not in the past."));
 
             var photographers = _bl.GetPhotographers().ToList();
@@ -129,6 +168,33 @@ namespace PicDbTests
             Assert.That(picture.Exif, Is.Not.Null);
             Assert.That(picture.IptcId, Is.Not.Null);
             Assert.That(picture.Iptc, Is.Not.Null);
+        }
+
+        /*
+        [Test]
+        public void ShouldThrowArgumentNullExceptionOnUpdateNullPhotographer()
+        {
+            Photographer newPhotographer = null;
+            Assert.Throws<ArgumentNullException>(() => _bl.Update(newPhotographer));
+            
+            var photographers = _bl.GetPhotographers().ToList();
+            Assert.That(photographers, Is.Not.Null);
+            Assert.That(photographers.Count, Is.EqualTo(3));
+        }
+        */
+
+        [Test]
+        public void ShouldUpdatePhotographer()
+        {
+            var photographer = _bl.GetPhotographers().First();
+
+            photographer.Firstname = "Max";
+            photographer.Lastname = "Mustermann";
+            
+            _bl.Update(photographer);
+
+            var newPhotographer = _bl.GetPhotographers().First();
+            Assert.That(photographer, Is.EqualTo(newPhotographer));
         }
     }
 }

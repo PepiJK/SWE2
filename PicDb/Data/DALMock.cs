@@ -157,7 +157,9 @@ namespace PicDb.Data
 
         public void Update(Photographer photographer)
         {
-            throw new NotImplementedException();
+            _photographers.Remove(_photographers.FirstOrDefault(p => p.Id == photographer.Id));
+            _photographers.Add(photographer);
+            _photographers = _photographers.OrderBy(p => p.Id).ToList();
         }
 
         public void Update(Picture picture)
