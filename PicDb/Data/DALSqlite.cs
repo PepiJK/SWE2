@@ -8,6 +8,9 @@ using System.IO;
 
 namespace PicDb.Data
 {
+    /// <summary>
+    /// Data access layer class for a sqlite database.
+    /// </summary>
     public class DALSqlite : IDAL
     {
         private static readonly ILog Log = LogManager.GetLogger(typeof(DALSqlite));

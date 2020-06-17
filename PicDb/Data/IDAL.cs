@@ -3,6 +3,9 @@ using PicDb.Models;
 
 namespace PicDb.Data
 {
+    /// <summary>
+    /// Data access layer interface.
+    /// </summary>
     public interface IDAL
     {
         /// <summary>

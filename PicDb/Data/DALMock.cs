@@ -5,6 +5,9 @@ using System.Linq;
 
 namespace PicDb.Data
 {
+    /// <summary>
+    /// Data access layer class for mocking a database.
+    /// </summary>
     public class DALMock : IDAL
     {
         private int _currentPicId = 3;
