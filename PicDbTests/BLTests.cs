@@ -171,19 +171,6 @@ namespace PicDbTests
             Assert.That(picture.Iptc, Is.Not.Null);
         }
 
-        /*
-        [Test]
-        public void ShouldThrowArgumentNullExceptionOnUpdateNullPhotographer()
-        {
-            Photographer newPhotographer = null;
-            Assert.Throws<ArgumentNullException>(() => _bl.Update(newPhotographer));
-            
-            var photographers = _bl.GetPhotographers().ToList();
-            Assert.That(photographers, Is.Not.Null);
-            Assert.That(photographers.Count, Is.EqualTo(3));
-        }
-        */
-
         [Test]
         public void ShouldUpdatePhotographer()
         {

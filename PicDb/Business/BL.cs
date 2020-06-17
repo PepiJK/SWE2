@@ -86,11 +86,13 @@ namespace PicDb.Business
 
         public void Delete(Picture picture)
         {
+            if (picture == null) throw new ArgumentNullException();
             _dal.Delete(picture);
         }
 
         public IEnumerable<Photographer> GetPhotographers(string searchString)
         {
+            if (searchString == null) throw new ArgumentNullException();
             return _dal.GetPhotographers(searchString);
         }
 
